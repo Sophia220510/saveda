@@ -125,14 +125,17 @@ function Portrait({
   eager?: boolean;
 }) {
   const portrait = portraits[index]!;
+  const width = "width" in portrait ? portrait.width : 1600;
+  const height = "height" in portrait ? portrait.height : 1600;
+  const largest = Math.min(width, 1600);
   return (
     <img
       className={className}
       src={`/images/thiago/${portrait.name}-1024.webp`}
-      srcSet={`/images/thiago/${portrait.name}-640.webp 640w, /images/thiago/${portrait.name}-1024.webp 1024w, /images/thiago/${portrait.name}-1600.webp 1600w`}
+      srcSet={`/images/thiago/${portrait.name}-640.webp 640w, /images/thiago/${portrait.name}-1024.webp 1024w, /images/thiago/${portrait.name}-${largest}.webp ${largest}w`}
       sizes="(max-width: 600px) 100vw, (max-width: 1000px) 55vw, 640px"
-      width="1600"
-      height="1600"
+      width={width}
+      height={height}
       loading={eager ? "eager" : "lazy"}
       fetchPriority={eager ? "high" : "auto"}
       alt={portrait.alt}
@@ -160,6 +163,7 @@ function Brand({ footer = false }: { footer?: boolean }) {
 export function ThiagoSavedaPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSpace, setActiveSpace] = useState<number | null>(0);
+  const [approach, setApproach] = useState(0);
   const [dialog, setDialog] = useState<"contact" | "portrait" | null>(null);
   const [portraitIndex, setPortraitIndex] = useState(0);
   const [copied, setCopied] = useState(false);
@@ -181,7 +185,11 @@ export function ThiagoSavedaPage() {
     };
   }, [dialog]);
   useEffect(() => {
-    if (!rootRef.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const root = rootRef.current;
+    if (!root) return;
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (media.matches) return;
+    root.classList.add("motion-ready");
     const observer = new IntersectionObserver(
       (entries) =>
         entries.forEach((entry) => {
@@ -190,14 +198,43 @@ export function ThiagoSavedaPage() {
             observer.unobserve(entry.target);
           }
         }),
-      { threshold: 0.08 },
+      { threshold: 0.12, rootMargin: "0px 0px -30px 0px" },
     );
-    rootRef.current.querySelectorAll("[data-reveal]").forEach((element) => {
-      if (element.getBoundingClientRect().top > window.innerHeight)
+    root.querySelectorAll("[data-reveal]").forEach((element) => {
+      if (element.getBoundingClientRect().top > window.innerHeight - 30)
         element.classList.add("reveal-pending");
       observer.observe(element);
     });
-    return () => observer.disconnect();
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const scroll = window.scrollY;
+      const range = document.documentElement.scrollHeight - window.innerHeight;
+      root.style.setProperty("--scroll-progress", String(range > 0 ? scroll / range : 0));
+      root.style.setProperty("--hero-shift", `${Math.min(scroll * 0.09, 70)}px`);
+      root.classList.toggle("has-scrolled", scroll > 30);
+      root.classList.toggle("past-intro", scroll > 900);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    const onPreferenceChange = () => {
+      root.classList.toggle("motion-ready", !media.matches);
+      if (media.matches)
+        root.querySelectorAll(".reveal-pending").forEach((e) => e.classList.add("revealed"));
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    media.addEventListener("change", onPreferenceChange);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      media.removeEventListener("change", onPreferenceChange);
+      root.classList.remove("motion-ready");
+    };
   }, []);
   function openContact() {
     setMenuOpen(false);
@@ -225,6 +262,7 @@ export function ThiagoSavedaPage() {
         Ir para o conteúdo
       </a>
       <div className="rainbow-edge" aria-hidden="true" />
+      <div className="reading-progress" aria-hidden="true" />
       <header className="site-header">
         <div className="container header-inner">
           <Brand />
@@ -263,7 +301,8 @@ export function ThiagoSavedaPage() {
       </header>
 
       <main id="conteudo">
-        <section className="hero dark-section" aria-labelledby="hero-title">
+        <section className="hero" aria-labelledby="hero-title">
+          <div className="hero-wash" aria-hidden="true" />
           <div className="container hero-grid">
             <div className="hero-copy">
               <div className="pride-pill">
@@ -273,18 +312,11 @@ export function ThiagoSavedaPage() {
                 THIAGO SAVEDA · PSICANALISTA & PSICOPEDAGOGO
               </span>
               <h1 id="hero-title">
-                Ser você.
+                Sua história.
                 <br />
-                Por <em>inteiro.</em>
-                <svg viewBox="0 0 380 25" aria-hidden="true">
-                  <path
-                    d="M3 16C116 1 252 1 376 11M26 23C173 10 260 11 333 17"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                  />
-                </svg>
+                Todas as
+                <br />
+                suas <em>cores.</em>
               </h1>
               <p>
                 Um espaço de escuta para as suas histórias,
@@ -301,12 +333,9 @@ export function ThiagoSavedaPage() {
                 </span>
               </div>
               <div className="hero-person">
-                <img
-                  src="/images/thiago/retrato-instagram.jpg"
-                  width="150"
-                  height="150"
-                  alt="Foto do perfil profissional de Thiago"
-                />
+                <span className="hero-person-mark">
+                  <MessageCircle size={23} strokeWidth={1.3} />
+                </span>
                 <div>
                   Prazer, Thiago.<span>Entre a educação, a pesquisa e a escuta.</span>
                 </div>
@@ -320,31 +349,38 @@ export function ThiagoSavedaPage() {
               </div>
             </div>
             <div className="hero-visual">
-              <div className="hero-orbit" aria-hidden="true" />
-              <span className="photo-index">01 / MUITAS CORES. UMA HISTÓRIA.</span>
+              <div className="hero-orbit" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </div>
+              <span className="photo-index">LINGUAGEM · MASCULINIDADES · VIVÊNCIAS GAYS</span>
               <button
                 className="hero-photo portrait-button"
-                onClick={() => openPortrait(0)}
-                aria-label="Ampliar retrato de Thiago Saveda com moletom arco-íris"
+                onClick={() => openPortrait(2)}
+                aria-label="Ampliar retrato de Thiago Saveda com um livro"
               >
-                <Portrait index={0} eager />
+                <Portrait index={2} eager />
                 <span className="photo-expand">
                   <Plus size={19} />
                 </span>
               </button>
               <div className="photo-name">
-                THIAGO
-                <br />
-                <span>SAVEDA</span>
+                Thiago <span>Saveda</span>
+              </div>
+              <div className="hero-pride-card">
+                <PrideFlag />
+                <span>
+                  Existir também
+                  <br />é pertencer.
+                </span>
               </div>
               <div className="hero-sticker">
                 <Star />
                 <span>
-                  O seu jeito
+                  ESCUTA
                   <br />
-                  de ser tem
-                  <br />
-                  <strong>espaço aqui.</strong>
+                  <strong>sem moldes.</strong>
                 </span>
               </div>
               <div className="photo-caption">
@@ -389,6 +425,42 @@ export function ThiagoSavedaPage() {
           </div>
         </div>
 
+        <div className="moving-ribbon" aria-hidden="true">
+          <div>
+            {[0, 1].map((i) => (
+              <span key={i}>
+                ESCUTA <Star /> IDENTIDADE <Star /> PERTENCIMENTO <Star /> LIBERDADE DE SER{" "}
+                <Star />{" "}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <section className="manifesto container section-space" aria-labelledby="manifesto-title">
+          <div className="manifesto-meta" data-reveal>
+            <span className="eyebrow">UM CONVITE PARA CHEGAR.</span>
+            <span>SEM UM ROTEIRO PRONTO.</span>
+          </div>
+          <h2 id="manifesto-title" data-reveal>
+            Você não precisa ter
+            <br />
+            todas as respostas para
+            <br />
+            <em>começar a se escutar.</em>
+            <Star />
+          </h2>
+          <div className="manifesto-bottom" data-reveal>
+            <PrideFlag />
+            <p>
+              Às vezes, o começo é uma pergunta. Às vezes, é algo que você ainda não consegue
+              nomear. Há espaço para chegar assim também.
+            </p>
+            <a className="round-link" href="#escuta" aria-label="Conheça os espaços de escuta">
+              <ArrowDown />
+            </a>
+          </div>
+        </section>
+
         <section
           className="about-section container section-space"
           id="sobre"
@@ -403,24 +475,24 @@ export function ThiagoSavedaPage() {
               <span className="vertical-caption">EDUCADOR · PESQUISADOR · PSICANALISTA</span>
               <button
                 className="about-main-photo portrait-button"
-                onClick={() => openPortrait(1)}
-                aria-label="Ampliar retrato de Thiago Saveda"
+                onClick={() => openPortrait(0)}
+                aria-label="Ampliar retrato de Thiago Saveda com moletom arco-íris"
               >
-                <Portrait index={1} />
+                <Portrait index={0} />
                 <span className="photo-expand">
                   <Plus size={19} />
                 </span>
               </button>
               <button
                 className="about-small-photo portrait-button"
-                onClick={() => openPortrait(0)}
-                aria-label="Ver outra foto de Thiago Saveda"
+                onClick={() => openPortrait(4)}
+                aria-label="Ampliar retrato de Thiago Saveda no cotidiano"
               >
-                <Portrait index={0} />
+                <Portrait index={4} />
                 <span>
-                  Também sou feito
+                  Histórias que
                   <br />
-                  de muitas cores.
+                  se encontram.
                 </span>
               </button>
               <div className="collage-stamp">
@@ -463,6 +535,20 @@ export function ThiagoSavedaPage() {
                 <span>Psicopedagogia</span>
                 <span>Educação</span>
                 <span>Diversidade</span>
+              </div>
+              <div className="about-details">
+                <div>
+                  <span>01 / EDUCAR</span>
+                  <p>Entender os caminhos de cada pessoa.</p>
+                </div>
+                <div>
+                  <span>02 / PESQUISAR</span>
+                  <p>Fazer perguntas sobre quem somos.</p>
+                </div>
+                <div>
+                  <span>03 / ESCUTAR</span>
+                  <p>Dar lugar às suas próprias palavras.</p>
+                </div>
               </div>
               <div className="about-sign">
                 <span>Thiago Saveda</span>
@@ -612,6 +698,99 @@ export function ThiagoSavedaPage() {
               })}
             </div>
           </div>
+          <div className="approach-notebook" data-reveal>
+            <div className="approach-intro">
+              <span className="eyebrow">DOIS OLHARES. A SUA SINGULARIDADE.</span>
+              <h3>
+                Há mais de um jeito
+                <br />
+                de abrir <em>a conversa.</em>
+              </h3>
+              <p>
+                Conheça os percursos que fazem parte da apresentação profissional do Thiago. A
+                triagem é o momento de conversar sobre o que você procura.
+              </p>
+              <span className="notebook-note">O ponto de partida é você.</span>
+            </div>
+            <div className="approach-pages">
+              <div role="tablist" aria-label="Percursos de atendimento" className="approach-tabs">
+                {["Psicanálise", "Psicopedagogia"].map((label, index) => (
+                  <button
+                    key={label}
+                    id={`approach-tab-${index}`}
+                    role="tab"
+                    aria-selected={approach === index}
+                    aria-controls={`approach-panel-${index}`}
+                    tabIndex={approach === index ? 0 : -1}
+                    onClick={() => setApproach(index)}
+                    onKeyDown={(event) => {
+                      if (["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
+                        event.preventDefault();
+                        const next = event.key === "Home" ? 0 : event.key === "End" ? 1 : 1 - index;
+                        setApproach(next);
+                        document.getElementById(`approach-tab-${next}`)?.focus();
+                      }
+                    }}
+                  >
+                    {label}
+                    <ArrowUpRight size={17} />
+                  </button>
+                ))}
+              </div>
+              {[
+                {
+                  label: "01 / PALAVRA & SUBJETIVIDADE",
+                  title: "Um lugar para a sua história ganhar palavras.",
+                  description:
+                    "Afetos, relações, identidade e os sentidos que você dá às suas experiências podem encontrar lugar na conversa. Você pode começar pelo que está vivendo agora.",
+                  questions: [
+                    "Como eu conto minha própria história?",
+                    "Que expectativas atravessam meus vínculos?",
+                    "O que eu gostaria de conseguir dizer?",
+                  ],
+                },
+                {
+                  label: "02 / APRENDIZAGEM & LINGUAGEM",
+                  title: "Cada forma de aprender carrega uma história.",
+                  description:
+                    "O olhar psicopedagógico se volta à relação de cada pessoa com a aprendizagem. Na triagem, há espaço para apresentar suas perguntas, seu contexto e os desafios que deseja conversar.",
+                  questions: [
+                    "Como me relaciono com a aprendizagem?",
+                    "Que desafios encontro nesse percurso?",
+                    "Como minha história aparece no aprender?",
+                  ],
+                },
+              ].map((item, index) => (
+                <div
+                  key={item.label}
+                  id={`approach-panel-${index}`}
+                  role="tabpanel"
+                  aria-labelledby={`approach-tab-${index}`}
+                  tabIndex={0}
+                  hidden={approach !== index}
+                  className="approach-panel"
+                >
+                  <span className="eyebrow">{item.label}</span>
+                  <h4>{item.title}</h4>
+                  <p>{item.description}</p>
+                  <span className="approach-question-label">
+                    PERGUNTAS QUE PODEM ABRIR CAMINHOS
+                  </span>
+                  <ul>
+                    {item.questions.map((question) => (
+                      <li key={question}>
+                        <span>↳</span>
+                        {question}
+                      </li>
+                    ))}
+                  </ul>
+                  <button className="text-link" onClick={openContact}>
+                    Conhecer a proposta na triagem <ArrowUpRight size={17} />
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
 
         <section className="education-section" id="trajetoria" aria-labelledby="education-title">
@@ -632,9 +811,9 @@ export function ThiagoSavedaPage() {
                 Caminhos que se aproximam na escuta.
               </p>
             </div>
-            <div className="education-cards" data-reveal>
+            <div className="education-cards" data-stagger>
               {thiagoProfile.education.map((item, index) => (
-                <article className="education-card" key={item.title}>
+                <article className="education-card" key={item.title} data-reveal>
                   <div className="education-card-top">
                     <span>{item.label}</span>
                     {index < 2 ? (
@@ -669,9 +848,9 @@ export function ThiagoSavedaPage() {
                 também esteve <em>ensinando.</em>
               </h3>
             </div>
-            <div className="career-list" data-reveal>
+            <div className="career-list" data-stagger>
               {thiagoProfile.experience.map((item, index) => (
-                <article key={item.role}>
+                <article key={item.role} data-reveal>
                   <div className="career-date">
                     <span>0{index + 1}</span>
                     <strong>{item.period}</strong>
@@ -743,7 +922,7 @@ export function ThiagoSavedaPage() {
               <Instagram size={18} /> Acompanhe as reflexões <ArrowUpRight size={19} />
             </a>
           </div>
-          <div className="reflections-grid" data-reveal>
+          <div className="reflections-grid" data-stagger>
             {reflections.map((post, index) => (
               <a
                 className="reflection-card"
@@ -751,6 +930,7 @@ export function ThiagoSavedaPage() {
                 key={post.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-reveal
               >
                 <div className="reflection-image">
                   <img src={post.image} width="640" height="640" loading="lazy" alt={post.alt} />
@@ -803,7 +983,7 @@ export function ThiagoSavedaPage() {
               </h2>
               <PrideFlag />
             </div>
-            <div className="steps-grid" data-reveal>
+            <div className="steps-grid" data-stagger>
               {[
                 {
                   title: "Um olá.",
@@ -821,7 +1001,7 @@ export function ThiagoSavedaPage() {
                     "Conversem sobre a continuidade, os horários e os detalhes dos encontros online.",
                 },
               ].map((step, index) => (
-                <article key={step.title}>
+                <article key={step.title} data-reveal>
                   <div>
                     <span>0{index + 1}</span>
                     {index < 2 ? <ArrowRight size={24} /> : <Check size={22} />}
@@ -889,7 +1069,7 @@ export function ThiagoSavedaPage() {
               </button>
             </div>
             <div className="closing-photo" data-reveal>
-              <Portrait index={0} />
+              <Portrait index={3} />
               <div className="closing-photo-note">
                 <span>Prazer, Thiago.</span>
                 <PrideFlag />
@@ -928,6 +1108,16 @@ export function ThiagoSavedaPage() {
         <div className="rainbow-edge" aria-hidden="true" />
       </footer>
 
+      <button
+        className="floating-contact"
+        onClick={openContact}
+        aria-label="Conversar com Thiago sobre a triagem gratuita"
+      >
+        <MessageCircle size={21} />
+        <span>Vamos conversar</span>
+        <ArrowUpRight size={18} />
+      </button>
+
       <dialog
         ref={dialogRef}
         className={`site-dialog ${dialog === "portrait" ? "portrait-dialog" : "contact-dialog"}`}
@@ -944,7 +1134,8 @@ export function ThiagoSavedaPage() {
           if (dialog !== "portrait") return;
           if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
             event.preventDefault();
-            setPortraitIndex((index) => (index + 1) % portraits.length);
+            const direction = event.key === "ArrowRight" ? 1 : -1;
+            setPortraitIndex((index) => (index + direction + portraits.length) % portraits.length);
           }
         }}
       >
@@ -968,7 +1159,9 @@ export function ThiagoSavedaPage() {
               <div className="gallery-controls">
                 <button
                   aria-label="Retrato anterior"
-                  onClick={() => setPortraitIndex((index) => (index + 1) % portraits.length)}
+                  onClick={() =>
+                    setPortraitIndex((index) => (index - 1 + portraits.length) % portraits.length)
+                  }
                 >
                   <ArrowLeft size={20} />
                 </button>
@@ -1020,11 +1213,7 @@ export function ThiagoSavedaPage() {
             >
               <Instagram size={19} /> Abrir Instagram do Thiago <ArrowUpRight size={19} />
             </a>
-            <small>
-              O horário é confirmado diretamente com Thiago.
-              <br />
-              Este site não envia mensagens nem realiza agendamentos automaticamente.
-            </small>
+            <small>O horário é confirmado diretamente com Thiago.</small>
           </div>
         )}
       </dialog>

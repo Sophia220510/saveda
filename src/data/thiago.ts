@@ -87,6 +87,34 @@ export const portraits = [
     source: "https://palavriadoo.blogspot.com/",
     origin: "Retrato público · Palavriado",
   },
+  {
+    name: "thiago-livros",
+    alt: "Thiago Saveda sorrindo com um livro aberto diante de sua estante",
+    caption: "Entre histórias, educação e escuta.",
+    source: "https://colorsdj.com/wp-content/uploads/2021/10/Para-coluna-nova.jpg",
+    origin: "Acervo público de Thiago · Colors DJ Magazine",
+    width: 1041,
+    height: 1388,
+  },
+  {
+    name: "thiago-biblioteca",
+    alt: "Thiago Saveda com blusa floral, em um retrato diante de livros",
+    caption: "Um encontro começa pela presença.",
+    source:
+      "https://colorsdj.com/wp-content/uploads/2022/09/saveda_209367159_619494902352897_2496929665710293139_n.jpg",
+    origin: "Acervo público de Thiago · Colors DJ Magazine",
+    width: 1440,
+    height: 1440,
+  },
+  {
+    name: "thiago-cotidiano",
+    alt: "Thiago Saveda sorrindo, sentado em um sofá em um ambiente acolhedor",
+    caption: "A vida também acontece nos pequenos encontros.",
+    source: "https://colorsdj.com/wp-content/uploads/2021/03/thiago-saveda-2-min.jpg",
+    origin: "Acervo público de Thiago · Colors DJ Magazine",
+    width: 2208,
+    height: 2208,
+  },
 ];
 
 export const reflections = [

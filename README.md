@@ -1,35 +1,42 @@
-# O Brigadeiro Perfeito — reprodução escolar
+# Thiago Saveda — Ser você. Por inteiro.
 
-Adaptação da página <https://obrigadeiroperfeito.com.br/> para um exercício escolar de desenvolvimento web. Inclui 12 seções, imagens e fontes locais, carrosséis responsivos e perguntas expansíveis. O personagem Matheus e suas três imagens foram criados por IA; o carrossel mantém os 19 prints originais das avaliações das alunas.
-
-Os sete botões de compra abrem diretamente o checkout externo informado: <https://pay.kiwify.com.br/rL2kTRo>.
-
-As imagens dos carrosséis carregam conforme se aproximam da tela. Fotos e fundos otimizados usam WebP e cache; os prints originais das avaliações foram preservados. Veja a medição em [Desempenho](docs/DESEMPENHO.md).
-
-O rastreamento instalado na página é o pixel Meta `1579260150039081`, com `PageView` e fallback sem JavaScript. Veja a [auditoria do pixel](docs/PIXEL.md).
+Site profissional de Thiago Saveda, psicopedagogo e psicanalista. Identidade visual com verde-lima, fundo escuro, retratos reais em alta resolução e bandeira Progress Pride. Inclui apresentação, espaços de escuta, formação, trajetória docente, pesquisa, reflexões e triagem por Instagram.
 
 ## Executar
 
-Requer Node.js 22.12 ou superior e npm.
-
 ```sh
-git clone https://github.com/Sophia220510/mdscopieiKKKKKK.git
-cd mdscopieiKKKKKK
+git clone https://github.com/Sophia220510/saveda.git
+cd saveda
 npm ci
 npm run dev
 ```
 
-Para gerar a versão de produção, execute `npm run build`.
+`npm run build` gera a versão de produção com TanStack Start e Nitro. `vercel.json` e `vite.config.ts` mantêm a configuração de publicação existente.
 
-## Publicar na Vercel
+## Editar a formação e a experiência
 
-Importe este repositório com a branch `main`. O arquivo `vercel.json` configura o framework TanStack Start, a instalação com `npm ci` e a compilação com `npm run build`. O preset Vercel do Nitro gera os arquivos estáticos e a função de servidor em `.vercel/output/`.
+Abra **[`src/data/thiago.ts`](src/data/thiago.ts)**. Esse arquivo reúne:
+
+- Formação, instituições e anos de conclusão.
+- Experiência em escolas e faculdades, períodos e duração.
+- Links de contato e da pesquisa na USP.
+- Imagens e links das publicações.
+
+Substitua `Instituição X`, `Escola X`, `Faculdade X`, `XXXX — XXXX`, `Conclusão: XXXX` e `X anos` pelos dados corretos. Esses campos estão reservados para edição; os períodos não foram inventados.
+
+A graduação em Letras pela UEM e o mestrado em Estudos Culturais pela USP foram confirmados em fontes públicas. A documentação das fontes e dos retratos está em [`docs/thiago-saveda.md`](docs/thiago-saveda.md).
 
 ## Arquivos principais
 
-- `src/data/brigadeiro-sections.json`: conteúdo das seções.
-- `src/components/BrigadeiroPage.tsx`: interações da página.
-- `public/replica/`: estilos, imagens e fontes da referência.
-- [Análise e validação](docs/ANALISE-BRIGADEIRO.md): estrutura, comparação visual e testes realizados.
+- `src/components/ThiagoSavedaPage.tsx`: página, galeria, conteúdos expansíveis e janela de contato.
+- `src/data/thiago.ts`: dados editáveis.
+- `src/styles.css`: identidade visual e comportamento responsivo.
+- `src/routes/__root.tsx` e `src/routes/index.tsx`: shell e metadados.
+- `public/images/thiago/`: retratos responsivos e publicações do Instagram.
+- `public/fonts/`: fontes locais e suas licenças.
 
-A adaptação tem finalidade escolar. Os elementos da referência pertencem aos respectivos titulares. Veja os arquivos e os prompts da personagem em [Matheus](docs/MATHEUS.md).
+## Validação da reformulação
+
+Build de produção, TypeScript e ESLint dos arquivos alterados aprovados. Verificação no navegador em dez larguras entre 320 e 1440 pixels, sem rolagem lateral ou imagens quebradas. Galeria, navegação por teclado, menu móvel, perguntas frequentes, temas de escuta e cópia da mensagem de triagem conferidos.
+
+O contato abre o Instagram profissional. O site não coleta dados, não envia mensagens automaticamente e não confirma horários.

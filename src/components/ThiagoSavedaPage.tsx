@@ -1,127 +1,200 @@
-import { useEffect, useRef, useState, type KeyboardEvent } from "react";
-import { ArrowDown, ArrowRight, ArrowUpRight, Check, Copy, Instagram, Menu, X } from "lucide-react";
+import { useEffect, useId, useRef, useState } from "react";
+import {
+  ArrowDown,
+  ArrowLeft,
+  ArrowRight,
+  ArrowUpRight,
+  BookOpen,
+  Check,
+  Copy,
+  GraduationCap,
+  Globe2,
+  Heart,
+  Instagram,
+  Menu,
+  MessageCircle,
+  MoveUpRight,
+  Plus,
+  Sparkles,
+  X,
+} from "lucide-react";
+import { thiagoProfile, portraits, reflections } from "@/data/thiago";
 
-const instagram = "https://www.instagram.com/thiagosaveda.psi/";
-const themes = [
+const spaces = [
   {
-    label: "Identidade & pertencimento",
     number: "01",
-    title: "Quem você é, além do que esperam de você?",
-    text: "As expectativas dos outros podem ocupar muito espaço. Conversar sobre identidade é abrir lugar para a sua própria história, seus desejos e suas formas de estar no mundo.",
-    tags: ["Vivências gays", "Masculinidades", "Pertencimento"],
-    word: "ser.",
+    title: "Identidade & vivências gays",
+    subtitle: "Seu jeito de ser, seus afetos, sua história.",
+    text: "Pertencimento, relações, sexualidade e os sentidos de viver como homem gay. Um espaço para conversar sobre suas experiências e sobre as expectativas que atravessam a sua identidade.",
+    tags: ["Vivências gays", "Pertencimento", "Sexualidade"],
+    icon: Heart,
+    color: "pink",
   },
   {
-    label: "Linguagem & subjetividade",
     number: "02",
-    title: "Às vezes, encontrar palavras já é um começo.",
-    text: "O que dizemos, o que silenciamos e as histórias que contamos sobre nós. A linguagem pode ser um caminho para olhar para as experiências e construir outros sentidos.",
-    tags: ["Expressão", "Narrativas pessoais", "Escuta"],
-    word: "dizer.",
+    title: "Masculinidades & relações",
+    subtitle: "Outras possibilidades de sentir e se relacionar.",
+    text: "O que significa ser homem para você? As cobranças, os papéis que aprendemos a ocupar e as maneiras de viver os vínculos podem encontrar lugar na conversa.",
+    tags: ["Masculinidades", "Vínculos", "Afetos"],
+    icon: Sparkles,
+    color: "lime",
   },
   {
-    label: "Aprendizagem & descobertas",
     number: "03",
-    title: "Aprender também passa por se descobrir.",
-    text: "Cada pessoa tem uma relação singular com o aprender. Um olhar psicopedagógico considera os caminhos, os desafios e os sentidos que fazem parte dessa experiência.",
+    title: "Linguagem & subjetividade",
+    subtitle: "Palavras para aquilo que ainda não ganhou nome.",
+    text: "A linguagem faz parte de como nos reconhecemos e contamos nossa história. A escuta abre espaço para o que você diz, para as suas perguntas e para os sentidos que podem surgir.",
+    tags: ["Expressão", "Narrativas", "Escuta"],
+    icon: MessageCircle,
+    color: "blue",
+  },
+  {
+    number: "04",
+    title: "Aprendizagem & descobertas",
+    subtitle: "Um olhar atento para cada caminho de aprender.",
+    text: "A psicopedagogia considera a relação singular de cada pessoa com a aprendizagem. O percurso inclui os desafios, o contexto e as experiências de adolescentes e adultos.",
     tags: ["Psicopedagogia", "Adolescências", "Aprendizagem"],
-    word: "criar.",
-  },
-];
-const posts = [
-  {
-    image: "/images/thiago/pequeno-principe.jpg",
-    alt: "Ilustração do Pequeno Príncipe e da raposa publicada por Thiago Saveda",
-    category: "LITERATURA & VÍNCULOS",
-    title: "Histórias que abrem espaço para sentir.",
-    href: "https://www.instagram.com/thiagosaveda.psi/p/DdCjRsiJ_Kc/",
-  },
-  {
-    image: "/images/thiago/professor-sim.jpg",
-    alt: "Publicação de Thiago sobre o livro Professora sim, tia não, de Paulo Freire",
-    category: "EDUCAÇÃO & IDENTIDADE",
-    title: "Quem é o professor que estamos nos tornando?",
-    href: "https://www.instagram.com/thiagosaveda.psi/p/DdjLHX7TSmL/",
-  },
-  {
-    image: "/images/thiago/marcelo-marmelo.jpg",
-    alt: "Livro Marcelo, marmelo, martelo, de Ruth Rocha, em publicação de Thiago Saveda",
-    category: "LINGUAGEM & DESCOBERTAS",
-    title: "As palavras e os mundos que elas criam.",
-    href: "https://www.instagram.com/thiagosaveda.psi/p/Dcq8yY5TEQO/",
+    icon: BookOpen,
+    color: "orange",
   },
 ];
 const questions = [
   {
-    question: "Preciso saber exatamente o que quero falar?",
+    question: "Preciso saber exatamente sobre o que quero conversar?",
     answer:
-      "Você pode começar com uma dúvida, uma inquietação ou a vontade de conversar. A triagem gratuita é um primeiro contato para apresentar o que você procura e perguntar sobre o atendimento.",
+      "Uma dúvida, uma inquietação ou a vontade de falar já podem ser um começo. A triagem gratuita é um primeiro contato para apresentar o que você procura e conhecer a proposta de atendimento.",
   },
   {
     question: "O atendimento é online?",
     answer:
-      "Sim. O atendimento divulgado por Thiago é online, para adolescentes e adultos. Os detalhes sobre plataforma, horários e organização dos encontros podem ser combinados diretamente na triagem.",
+      "Sim. Thiago divulga atendimento online para adolescentes e adultos. Os detalhes sobre plataforma, horários e organização dos encontros são combinados diretamente na conversa inicial.",
   },
   {
-    question: "Como solicito a triagem gratuita?",
+    question: "O espaço é voltado à comunidade LGBTQIA+?",
     answer:
-      "Use o botão de triagem para acessar o Instagram profissional @thiagosaveda.psi. Envie uma mensagem solicitando o primeiro contato e combine um horário diretamente com Thiago.",
+      "Linguagem, masculinidades e vivências gays fazem parte do foco de trabalho apresentado por Thiago. Você pode conversar na triagem sobre sua história e sobre o tipo de acompanhamento que procura.",
   },
   {
-    question: "Como saber qual atendimento faz sentido para mim?",
+    question: "Como funciona a triagem gratuita?",
     answer:
-      "Thiago se apresenta como psicopedagogo e psicanalista. Na conversa inicial, você pode explicar o que está buscando e conhecer a proposta de atendimento antes de decidir como seguir.",
+      "Você solicita o primeiro contato pelo Instagram profissional @thiagosaveda.psi. A conversa permite apresentar suas questões, conhecer a proposta e combinar diretamente com Thiago os próximos passos.",
+  },
+  {
+    question: "Qual é a diferença entre os percursos de atendimento?",
+    answer:
+      "Thiago se apresenta como psicopedagogo e psicanalista. Na triagem, você pode contar o que está buscando e perguntar sobre cada proposta, para entender qual caminho faz sentido para sua demanda.",
   },
 ];
-function Asterisk({ className = "" }: { className?: string }) {
+
+function PrideFlag({ className = "" }: { className?: string }) {
+  const titleId = useId();
   return (
-    <svg className={className} viewBox="0 0 80 80" fill="none" aria-hidden="true">
-      <path d="M40 4v72M4 40h72M14.5 14.5l51 51m0-51-51 51" stroke="currentColor" strokeWidth="9" />
+    <svg className={className} viewBox="0 0 300 180" role="img" aria-labelledby={titleId}>
+      <title id={titleId}>Bandeira do orgulho LGBTQIA+ Progress Pride</title>
+      <path fill="#e84d54" d="M0 0h300v30H0z" />
+      <path fill="#f29a48" d="M0 30h300v30H0z" />
+      <path fill="#f6d568" d="M0 60h300v30H0z" />
+      <path fill="#59a77a" d="M0 90h300v30H0z" />
+      <path fill="#568cca" d="M0 120h300v30H0z" />
+      <path fill="#8b62b0" d="M0 150h300v30H0z" />
+      <path fill="#262629" d="M0 0h25l100 90-100 90H0z" />
+      <path fill="#945d42" d="M0 0h5l100 90L5 180H0z" />
+      <path fill="#80c5db" d="M0 14l84 76L0 166z" />
+      <path fill="#eab8c7" d="M0 33l63 57L0 147z" />
+      <path fill="#fff7ef" d="M0 52l42 38L0 128z" />
     </svg>
+  );
+}
+function Star({ className = "" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 100 100" aria-hidden="true">
+      <path
+        d="m50 0 8 31 27-16-16 27 31 8-31 8 16 27-27-16-8 31-8-31-27 16 16-27L0 50l31-8-16-27 27 16Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+function Portrait({
+  index,
+  className = "",
+  eager = false,
+}: {
+  index: number;
+  className?: string;
+  eager?: boolean;
+}) {
+  const portrait = portraits[index]!;
+  return (
+    <img
+      className={className}
+      src={`/images/thiago/${portrait.name}-1024.webp`}
+      srcSet={`/images/thiago/${portrait.name}-640.webp 640w, /images/thiago/${portrait.name}-1024.webp 1024w, /images/thiago/${portrait.name}-1600.webp 1600w`}
+      sizes="(max-width: 600px) 100vw, (max-width: 1000px) 55vw, 640px"
+      width="1600"
+      height="1600"
+      loading={eager ? "eager" : "lazy"}
+      fetchPriority={eager ? "high" : "auto"}
+      alt={portrait.alt}
+    />
+  );
+}
+function Brand({ footer = false }: { footer?: boolean }) {
+  return (
+    <a
+      href="#inicio"
+      className={`brand ${footer ? "brand-footer" : ""}`}
+      aria-label="Thiago Saveda — início"
+    >
+      <span className="brand-mark">
+        ts
+        <span />
+      </span>
+      <span className="brand-name">
+        thiago saveda<span>PSICANÁLISE & PSICOPEDAGOGIA</span>
+      </span>
+    </a>
   );
 }
 
 export function ThiagoSavedaPage() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeTheme, setActiveTheme] = useState(0);
-  const [contactOpen, setContactOpen] = useState(false);
+  const [activeSpace, setActiveSpace] = useState<number | null>(0);
+  const [dialog, setDialog] = useState<"contact" | "portrait" | null>(null);
+  const [portraitIndex, setPortraitIndex] = useState(0);
   const [copied, setCopied] = useState(false);
   const [copyFailed, setCopyFailed] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const pageRef = useRef<HTMLDivElement>(null);
-  const theme = themes[activeTheme]!;
+  const rootRef = useRef<HTMLDivElement>(null);
   const message =
     "Olá, Thiago! Conheci seu site e gostaria de agendar uma triagem gratuita. Como podemos combinar?";
-
   useEffect(() => {
-    const dialog = dialogRef.current;
+    const element = dialogRef.current;
+    if (!element) return undefined;
+    if (dialog && !element.open) element.showModal();
+    if (!dialog && element.open) element.close();
     if (!dialog) return undefined;
-    if (contactOpen && !dialog.open) dialog.showModal();
-    if (!contactOpen && dialog.open) dialog.close();
-    if (contactOpen) {
-      const previousOverflow = document.body.style.overflow;
-      document.body.style.overflow = "hidden";
-      return () => {
-        document.body.style.overflow = previousOverflow;
-      };
-    }
-    return undefined;
-  }, [contactOpen]);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [dialog]);
   useEffect(() => {
-    if (!pageRef.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!rootRef.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const observer = new IntersectionObserver(
       (entries) =>
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
+            entry.target.classList.add("revealed");
             observer.unobserve(entry.target);
           }
         }),
       { threshold: 0.08 },
     );
-    pageRef.current.querySelectorAll("[data-reveal]").forEach((element) => {
+    rootRef.current.querySelectorAll("[data-reveal]").forEach((element) => {
       if (element.getBoundingClientRect().top > window.innerHeight)
-        element.classList.add("reveal-ready");
+        element.classList.add("reveal-pending");
       observer.observe(element);
     });
     return () => observer.disconnect();
@@ -130,7 +203,11 @@ export function ThiagoSavedaPage() {
     setMenuOpen(false);
     setCopied(false);
     setCopyFailed(false);
-    setContactOpen(true);
+    setDialog("contact");
+  }
+  function openPortrait(index: number) {
+    setPortraitIndex(index);
+    setDialog("portrait");
   }
   async function copyMessage() {
     try {
@@ -141,159 +218,174 @@ export function ThiagoSavedaPage() {
       setCopyFailed(true);
     }
   }
-  function onTabKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
-    let next = index;
-    if (event.key === "ArrowRight" || event.key === "ArrowDown") next = (index + 1) % themes.length;
-    else if (event.key === "ArrowLeft" || event.key === "ArrowUp")
-      next = (index + themes.length - 1) % themes.length;
-    else if (event.key === "Home") next = 0;
-    else if (event.key === "End") next = themes.length - 1;
-    else return;
-    event.preventDefault();
-    setActiveTheme(next);
-    document.getElementById(`theme-tab-${next}`)?.focus();
-  }
 
   return (
-    <div className="saveda-site" ref={pageRef} id="inicio">
-      <a className="skip-link" href="#conteudo">
+    <div className="saveda" ref={rootRef} id="inicio">
+      <a href="#conteudo" className="skip-link">
         Ir para o conteúdo
       </a>
+      <div className="rainbow-edge" aria-hidden="true" />
       <header className="site-header">
         <div className="container header-inner">
-          <a className="wordmark" href="#inicio" aria-label="Thiago Saveda — início">
-            <span className="wordmark-symbol">
-              ts<span>↗</span>
-            </span>
-            <span className="wordmark-name">
-              thiago
-              <br />
-              saveda
-            </span>
-          </a>
+          <Brand />
           <nav
-            className={`main-nav ${menuOpen ? "is-open" : ""}`}
             id="main-nav"
+            className={`main-nav ${menuOpen ? "is-open" : ""}`}
             aria-label="Navegação principal"
           >
-            <a href="#sobre" onClick={() => setMenuOpen(false)}>
-              Quem escuta
-            </a>
-            <a href="#escuta" onClick={() => setMenuOpen(false)}>
-              Espaços de escuta
-            </a>
-            <a href="#palavras" onClick={() => setMenuOpen(false)}>
-              Entre palavras
-            </a>
-            <button className="button button-small mobile-nav-cta" onClick={openContact}>
-              Vamos conversar <ArrowUpRight size={16} />
+            {[
+              ["#sobre", "Thiago"],
+              ["#escuta", "A escuta"],
+              ["#trajetoria", "Trajetória"],
+              ["#palavras", "Reflexões"],
+            ].map(([href, label]) => (
+              <a key={href} href={href} onClick={() => setMenuOpen(false)}>
+                {label}
+              </a>
+            ))}
+            <button className="button nav-mobile-contact" onClick={openContact}>
+              Vamos conversar <ArrowUpRight size={18} />
             </button>
           </nav>
-          <button className="button button-small header-cta" onClick={openContact}>
-            Vamos conversar <ArrowUpRight size={16} />
+          <button className="button button-small header-contact" onClick={openContact}>
+            Vamos conversar <ArrowUpRight size={17} />
           </button>
           <button
-            className="menu-toggle"
+            className="menu-button"
+            onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
             aria-expanded={menuOpen}
             aria-controls="main-nav"
-            onClick={() => setMenuOpen(!menuOpen)}
           >
             {menuOpen ? <X /> : <Menu />}
           </button>
         </div>
       </header>
+
       <main id="conteudo">
-        <section className="hero container" aria-labelledby="hero-title">
-          <div className="hero-eyebrow">
-            <span className="status-dot" /> PSICANÁLISE & PSICOPEDAGOGIA{" "}
-            <span className="eyebrow-divider">/</span> ONLINE
-          </div>
-          <div className="hero-layout">
+        <section className="hero dark-section" aria-labelledby="hero-title">
+          <div className="container hero-grid">
             <div className="hero-copy">
+              <div className="pride-pill">
+                <PrideFlag /> TODAS AS SUAS CORES CABEM AQUI.
+              </div>
+              <span className="eyebrow hero-eyebrow">
+                THIAGO SAVEDA · PSICANALISTA & PSICOPEDAGOGO
+              </span>
               <h1 id="hero-title">
-                Sua história
+                Ser você.
                 <br />
-                merece{" "}
-                <span className="listening-word">
-                  escuta.
-                  <svg viewBox="0 0 480 32" fill="none" aria-hidden="true">
-                    <path
-                      d="M5 21C112 1 295 2 471 13M30 29C154 15 298 13 422 22"
-                      stroke="currentColor"
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </span>
+                Por <em>inteiro.</em>
+                <svg viewBox="0 0 380 25" aria-hidden="true">
+                  <path
+                    d="M3 16C116 1 252 1 376 11M26 23C173 10 260 11 333 17"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                  />
+                </svg>
               </h1>
               <p>
-                Um espaço para colocar em palavras o que você sente.
-                <br className="desktop-break" /> E descobrir outras formas de ser você.
+                Um espaço de escuta para as suas histórias,
+                <br className="desktop-break" /> os seus afetos e tudo o que faz de você, você.
               </p>
               <div className="hero-actions">
                 <button className="button" onClick={openContact}>
-                  Agendar triagem gratuita <ArrowUpRight size={19} />
+                  Agendar triagem gratuita <ArrowUpRight size={21} />
                 </button>
-                <span className="hero-note">
-                  O primeiro passo pode
+                <span>
+                  Online. No seu tempo.
                   <br />
-                  ser uma conversa.
+                  Adolescentes e adultos.
                 </span>
               </div>
-            </div>
-            <div className="hero-art" aria-label="Apresentação de Thiago Saveda">
-              <div className="art-orbit orbit-one" />
-              <div className="art-orbit orbit-two" />
-              <Asterisk className="hero-star" />
-              <span className="art-label">CADA HISTÓRIA, UM UNIVERSO.</span>
-              <figure className="portrait-card">
+              <div className="hero-person">
                 <img
                   src="/images/thiago/retrato-instagram.jpg"
                   width="150"
                   height="150"
-                  fetchPriority="high"
-                  alt="Thiago Saveda, sorrindo, de blazer claro e camiseta preta"
+                  alt="Foto do perfil profissional de Thiago"
                 />
-                <figcaption>
-                  <span>Prazer, Thiago.</span>
-                  <ArrowUpRight size={23} />
-                </figcaption>
-              </figure>
-              <span className="handwritten hero-handwritten">
-                A gente começa
+                <div>
+                  Prazer, Thiago.<span>Entre a educação, a pesquisa e a escuta.</span>
+                </div>
+                <svg viewBox="0 0 80 35" fill="none" aria-hidden="true">
+                  <path
+                    d="M4 10c20-12 50 15 68 11M58 7l16 13-17 9"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div className="hero-visual">
+              <div className="hero-orbit" aria-hidden="true" />
+              <span className="photo-index">01 / MUITAS CORES. UMA HISTÓRIA.</span>
+              <button
+                className="hero-photo portrait-button"
+                onClick={() => openPortrait(0)}
+                aria-label="Ampliar retrato de Thiago Saveda com moletom arco-íris"
+              >
+                <Portrait index={0} eager />
+                <span className="photo-expand">
+                  <Plus size={19} />
+                </span>
+              </button>
+              <div className="photo-name">
+                THIAGO
                 <br />
-                pelo encontro.
-              </span>
-              <svg className="hand-arrow" viewBox="0 0 120 70" fill="none" aria-hidden="true">
-                <path
-                  d="M108 7C106 44 66 65 16 51m15-15L13 51l21 10"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+                <span>SAVEDA</span>
+              </div>
+              <div className="hero-sticker">
+                <Star />
+                <span>
+                  O seu jeito
+                  <br />
+                  de ser tem
+                  <br />
+                  <strong>espaço aqui.</strong>
+                </span>
+              </div>
+              <div className="photo-caption">
+                <span>ESCUTA. PRESENÇA. POSSIBILIDADES.</span>
+                <ArrowDown size={18} />
+              </div>
             </div>
           </div>
-          <div className="hero-bottom">
-            <span>ADOLESCENTES & ADULTOS</span>
-            <span>LINGUAGEM. IDENTIDADE. POSSIBILIDADES.</span>
-            <a href="#sobre" aria-label="Conhecer Thiago">
-              Um pouco mais de perto <ArrowDown size={16} />
+          <div className="container hero-bottom">
+            <a href="#sobre">
+              Conheça quem escuta <ArrowDown size={17} />
+            </a>
+            <span>
+              <span className="status-dot" /> ATENDIMENTO ONLINE
+            </span>
+            <a href="#diversidade">
+              <PrideFlag /> UM ESPAÇO LGBTQIA+ <ArrowUpRight size={15} />
             </a>
           </div>
         </section>
-        <div className="manifesto-strip" aria-hidden="true">
-          <div>
-            <span>menos rótulos</span>
-            <Asterisk />
-            <span>mais possibilidades</span>
-            <Asterisk />
-            <span>o seu tempo</span>
-            <Asterisk />
-            <span>a sua história</span>
-            <Asterisk />
+
+        <div className="credential-bar">
+          <div className="container">
+            <span>
+              <GraduationCap />
+              <span>
+                <strong>Letras · UEM</strong>Linguagem como ponto de partida
+              </span>
+            </span>
+            <span>
+              <BookOpen />
+              <span>
+                <strong>Estudos Culturais · USP</strong>Pesquisa sobre masculinidades
+              </span>
+            </span>
+            <span>
+              <Globe2 />
+              <span>
+                <strong>Encontros online</strong>Um espaço que chega até você
+              </span>
+            </span>
           </div>
         </div>
 
@@ -302,195 +394,329 @@ export function ThiagoSavedaPage() {
           id="sobre"
           aria-labelledby="about-title"
         >
-          <div className="section-kicker" data-reveal>
-            <span>01 / QUEM ESCUTA</span>
-            <span>UM ENCONTRO ENTRE HISTÓRIAS</span>
+          <div className="section-label" data-reveal>
+            <span>01 — QUEM ESTÁ DO OUTRO LADO</span>
+            <span>UMA PESSOA. MUITAS HISTÓRIAS.</span>
           </div>
-          <div className="about-grid" data-reveal>
-            <div className="about-art">
-              <span className="about-big-name">
-                Thiago
-                <br />
-                <em>Saveda.</em>
-              </span>
-              <div className="about-photo">
-                <img
-                  src="/images/thiago/retrato-instagram.jpg"
-                  width="150"
-                  height="150"
-                  loading="lazy"
-                  alt="Retrato de Thiago Saveda em seu Instagram profissional"
-                />
+          <div className="about-grid">
+            <div className="about-collage" data-reveal>
+              <span className="vertical-caption">EDUCADOR · PESQUISADOR · PSICANALISTA</span>
+              <button
+                className="about-main-photo portrait-button"
+                onClick={() => openPortrait(1)}
+                aria-label="Ampliar retrato de Thiago Saveda"
+              >
+                <Portrait index={1} />
+                <span className="photo-expand">
+                  <Plus size={19} />
+                </span>
+              </button>
+              <button
+                className="about-small-photo portrait-button"
+                onClick={() => openPortrait(0)}
+                aria-label="Ver outra foto de Thiago Saveda"
+              >
+                <Portrait index={0} />
                 <span>
-                  Psicopedagogo
-                  <br />& Psicanalista
+                  Também sou feito
+                  <br />
+                  de muitas cores.
+                </span>
+              </button>
+              <div className="collage-stamp">
+                <PrideFlag />
+                <span>
+                  EXISTIR
+                  <br />
+                  COM ORGULHO.
                 </span>
               </div>
-              <div className="about-art-footer">
-                <span>PALAVRAS QUE APROXIMAM.</span>
-                <Asterisk />
-              </div>
+              <span className="collage-note">Prazer, de verdade.</span>
             </div>
-            <div className="about-copy">
+            <div className="about-copy" data-reveal>
+              <span className="eyebrow">SOU THIAGO SAVEDA.</span>
               <h2 id="about-title">
-                Antes de qualquer
+                A escuta começa
                 <br />
-                rótulo, <em>uma pessoa.</em>
+                com um <em>encontro.</em>
               </h2>
               <p className="lead">
-                Somos feitos de histórias. Algumas conseguimos contar. Outras ainda estão procurando
-                palavras.
+                A minha história passa pela sala de aula, pela literatura e pelas perguntas sobre
+                quem somos.
               </p>
               <p>
-                Sou Thiago Saveda, psicopedagogo e psicanalista. Linguagem, masculinidades e
-                vivências gays são temas que atravessam meu trabalho e as conversas que proponho.
+                Sou psicopedagogo e psicanalista, formado em Letras pela UEM e mestre em Estudos
+                Culturais pela USP. Meu trabalho aproxima linguagem, masculinidades e vivências
+                gays.
               </p>
               <p>
-                Este espaço é um convite para olhar para a sua história com tempo e atenção —
-                incluindo as perguntas, os afetos e as possibilidades que fazem parte dela.
+                Como professor em escolas e no ensino superior, estive em contato com diferentes
+                formas de aprender e contar o mundo. Como pesquisador, voltei o olhar para as
+                narrativas e identidades de homens gays.
               </p>
-              <div className="about-signature">
-                <span className="handwritten">Thiago Saveda</span>
+              <p>
+                Hoje, esses caminhos se encontram em uma proposta de escuta que dá lugar à sua
+                singularidade: aos afetos, às perguntas e às possibilidades da sua história.
+              </p>
+              <div className="identity-tags">
+                <span>Psicanálise</span>
+                <span>Psicopedagogia</span>
+                <span>Educação</span>
+                <span>Diversidade</span>
+              </div>
+              <div className="about-sign">
+                <span>Thiago Saveda</span>
                 <a
                   className="text-link"
-                  href={instagram}
+                  href={thiagoProfile.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Conhecer o Instagram profissional de Thiago"
                 >
-                  Me encontre no Instagram <ArrowUpRight size={17} />
+                  Me encontre no Instagram <ArrowUpRight size={18} />
                 </a>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="listening-section" id="escuta" aria-labelledby="listening-title">
-          <div className="container section-space">
-            <div className="section-kicker" data-reveal>
-              <span>02 / ESPAÇOS DE ESCUTA</span>
-              <span>O QUE PODE VIRAR CONVERSA?</span>
-            </div>
-            <div className="section-heading" data-reveal>
-              <h2 id="listening-title">
-                Há muitas formas
+        <section
+          className="pride-section dark-section"
+          id="diversidade"
+          aria-labelledby="pride-title"
+        >
+          <div className="container pride-grid">
+            <div className="pride-copy" data-reveal>
+              <span className="eyebrow">
+                <span className="status-dot" /> IDENTIDADE TEM LUGAR AQUI.
+              </span>
+              <h2 id="pride-title">
+                Todas as cores.
                 <br />
-                de <em>se encontrar.</em>
+                Todos os jeitos
+                <br />
+                de <em>ser.</em>
               </h2>
               <p>
-                Não é preciso caber em uma definição.
-                <br />
-                Você pode começar por aquilo que te atravessa.
+                Masculinidades, afetos e vivências gays têm espaço na conversa. Sua história pode
+                ser escutada com atenção àquilo que faz parte de você.
               </p>
+              <a className="text-link" href="#escuta">
+                Conheça os espaços de escuta <ArrowUpRight size={20} />
+              </a>
             </div>
-            <div className="theme-tabs" role="tablist" aria-label="Temas de escuta" data-reveal>
-              {themes.map((item, index) => (
-                <button
-                  key={item.number}
-                  role="tab"
-                  id={`theme-tab-${index}`}
-                  aria-selected={activeTheme === index}
-                  aria-controls="theme-panel"
-                  tabIndex={activeTheme === index ? 0 : -1}
-                  className={activeTheme === index ? "active" : ""}
-                  onClick={() => setActiveTheme(index)}
-                  onKeyDown={(event) => onTabKeyDown(event, index)}
-                >
-                  <span>{item.number}</span>
-                  {item.label}
-                  <ArrowUpRight size={18} />
-                </button>
-              ))}
-            </div>
-            <div
-              className="theme-panel"
-              role="tabpanel"
-              id="theme-panel"
-              aria-labelledby={`theme-tab-${activeTheme}`}
-              tabIndex={0}
-              data-reveal
-            >
-              <div className={`theme-visual theme-visual-${activeTheme}`} aria-hidden="true">
-                <div className="theme-circle circle-a" />
-                <div className="theme-circle circle-b" />
-                <span className="theme-word" key={theme.word}>
-                  {theme.word}
+            <div className="pride-art" data-reveal>
+              <div className="pride-art-lines" aria-hidden="true" />
+              <PrideFlag className="large-pride-flag" />
+              <Star className="pride-star" />
+              <div className="pride-art-caption">
+                <span>LGBTQIA+</span>
+                <span>
+                  PERTENCER.
+                  <br />
+                  SENTIR.
+                  <br />
+                  EXISTIR.
                 </span>
-                <span className="theme-visual-caption">UM ESPAÇO PARA AS SUAS POSSIBILIDADES</span>
-                <Asterisk />
               </div>
-              <div className="theme-content" key={theme.number}>
-                <span className="mini-label">CADA EXPERIÊNCIA É SINGULAR.</span>
-                <h3>{theme.title}</h3>
-                <p>{theme.text}</p>
-                <div className="theme-tags">
-                  {theme.tags.map((tag) => (
-                    <span key={tag}>{tag}</span>
-                  ))}
-                </div>
-                <button className="text-link" onClick={openContact}>
-                  Vamos falar sobre isso <ArrowUpRight size={18} />
-                </button>
-              </div>
+              <span className="pride-note">
+                O seu lugar no mundo
+                <br />
+                também se constrói por dentro.
+              </span>
             </div>
-            <p className="listening-footnote">
-              Estes são pontos de partida. A sua história não precisa se limitar a eles.
-            </p>
+          </div>
+          <div className="pride-values container">
+            <span>IDENTIDADE</span>
+            <Star />
+            <span>PERTENCIMENTO</span>
+            <Star />
+            <span>AFETO</span>
+            <Star />
+            <span>LIBERDADE DE SER</span>
           </div>
         </section>
 
-        <section className="journey-section" id="atendimento" aria-labelledby="journey-title">
-          <div className="container section-space">
-            <div className="section-kicker" data-reveal>
-              <span>03 / O PRIMEIRO PASSO</span>
-              <span>DO SEU LUGAR, NO SEU TEMPO</span>
-            </div>
-            <div className="journey-heading" data-reveal>
-              <h2 id="journey-title">
-                Não precisa ter
-                <br />
-                todas as <em>respostas.</em>
-              </h2>
+        <section
+          className="spaces-section container section-space"
+          id="escuta"
+          aria-labelledby="spaces-title"
+        >
+          <div className="section-label" data-reveal>
+            <span>02 — ESPAÇOS DE ESCUTA</span>
+            <span>A SUA HISTÓRIA PODE COMEÇAR POR AQUI.</span>
+          </div>
+          <div className="section-heading" data-reveal>
+            <h2 id="spaces-title">
+              O que você gostaria
+              <br />
+              de colocar em <em>palavras?</em>
+            </h2>
+            <p>
+              Alguns caminhos para começar.
+              <br />A conversa pode ir muito além deles.
+            </p>
+          </div>
+          <div className="spaces-grid">
+            <div className="spaces-portrait" data-reveal>
+              <Portrait index={1} />
               <div>
-                <Asterisk />
-                <p>
-                  A conversa pode
+                <span className="eyebrow">UM ESPAÇO PARA SE ESCUTAR</span>
+                <span>
+                  O que você sente
                   <br />
-                  começar com uma pergunta.
-                </p>
+                  merece <em>atenção.</em>
+                </span>
               </div>
+              <Star />
             </div>
-            <div className="journey-steps" data-reveal>
-              <article>
-                <span className="step-number">
-                  01 <ArrowRight size={21} />
-                </span>
-                <h3>Um primeiro contato.</h3>
-                <p>Envie uma mensagem pelo Instagram e solicite sua triagem gratuita.</p>
-              </article>
-              <article>
-                <span className="step-number">
-                  02 <ArrowRight size={21} />
-                </span>
-                <h3>Uma conversa inicial.</h3>
-                <p>Conte o que está buscando e conheça a proposta de atendimento.</p>
-              </article>
-              <article>
-                <span className="step-number">
-                  03 <span className="step-dot" />
-                </span>
-                <h3>Um caminho possível.</h3>
-                <p>Conversem sobre os próximos passos e os detalhes dos encontros online.</p>
-              </article>
+            <div className="spaces-list" data-reveal>
+              {spaces.map((space, index) => {
+                const Icon = space.icon;
+                return (
+                  <article
+                    className={`space-card ${space.color} ${activeSpace === index ? "active" : ""}`}
+                    key={space.number}
+                  >
+                    <button
+                      onClick={() => setActiveSpace(activeSpace === index ? null : index)}
+                      aria-expanded={activeSpace === index}
+                      aria-controls={`space-content-${index}`}
+                    >
+                      <span className="space-icon">
+                        <Icon size={22} strokeWidth={1.5} />
+                      </span>
+                      <span>
+                        <small>{space.number} / UM CAMINHO POSSÍVEL</small>
+                        <strong>{space.title}</strong>
+                      </span>
+                      <Plus className="space-plus" size={21} />
+                    </button>
+                    <div
+                      id={`space-content-${index}`}
+                      className="space-content"
+                      hidden={activeSpace !== index}
+                    >
+                      <h3>{space.subtitle}</h3>
+                      <p>{space.text}</p>
+                      <div className="space-tags">
+                        {space.tags.map((tag) => (
+                          <span key={tag}>{tag}</span>
+                        ))}
+                      </div>
+                      <button className="text-link" onClick={openContact}>
+                        Vamos conversar sobre isso <ArrowUpRight size={18} />
+                      </button>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
-            <div className="journey-bottom" data-reveal>
-              <span>
-                <span className="status-dot" /> Atendimento online para adolescentes e adultos
-              </span>
-              <button className="button button-yellow" onClick={openContact}>
-                Quero dar o primeiro passo <ArrowUpRight size={19} />
-              </button>
+          </div>
+        </section>
+
+        <section className="education-section" id="trajetoria" aria-labelledby="education-title">
+          <div className="container section-space">
+            <div className="section-label" data-reveal>
+              <span>03 — FORMAÇÃO & TRAJETÓRIA</span>
+              <span>CONHECIMENTO QUE ENCONTRA A VIDA.</span>
             </div>
+            <div className="section-heading" data-reveal>
+              <h2 id="education-title">
+                Uma trajetória feita
+                <br />
+                de <em>encontros.</em>
+              </h2>
+              <p>
+                Educação, cultura, linguagem.
+                <br />
+                Caminhos que se aproximam na escuta.
+              </p>
+            </div>
+            <div className="education-cards" data-reveal>
+              {thiagoProfile.education.map((item, index) => (
+                <article className="education-card" key={item.title}>
+                  <div className="education-card-top">
+                    <span>{item.label}</span>
+                    {index < 2 ? (
+                      <GraduationCap size={26} strokeWidth={1.3} />
+                    ) : (
+                      <BookOpen size={25} strokeWidth={1.3} />
+                    )}
+                  </div>
+                  <span className="education-period">{item.period}</span>
+                  <h3>{item.title}</h3>
+                  <span className="education-institution">{item.institution}</span>
+                  <p>{item.description}</p>
+                  {item.source && (
+                    <a
+                      href={item.source}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="education-source"
+                      aria-label={`Consultar fonte da formação: ${item.title}`}
+                    >
+                      <ArrowUpRight size={18} />
+                    </a>
+                  )}
+                </article>
+              ))}
+            </div>
+            <div className="career-heading" data-reveal>
+              <span className="eyebrow">DA SALA DE AULA À ESCUTA.</span>
+              <h3>
+                A experiência de quem
+                <br />
+                também esteve <em>ensinando.</em>
+              </h3>
+            </div>
+            <div className="career-list" data-reveal>
+              {thiagoProfile.experience.map((item, index) => (
+                <article key={item.role}>
+                  <div className="career-date">
+                    <span>0{index + 1}</span>
+                    <strong>{item.period}</strong>
+                    {item.duration && <small>{item.duration} de experiência</small>}
+                  </div>
+                  <div className="career-body">
+                    <h4>{item.role}</h4>
+                    <span>{item.institution}</span>
+                    <p>{item.description}</p>
+                  </div>
+                  <span className="career-marker">
+                    <ArrowUpRight size={23} />
+                  </span>
+                </article>
+              ))}
+            </div>
+            <article className="research-feature" data-reveal>
+              <div className="research-symbol">
+                <span>USP</span>
+                <span>2022</span>
+                <GraduationCap size={34} strokeWidth={1.3} />
+              </div>
+              <div className="research-copy">
+                <span className="eyebrow">PESQUISA · MESTRADO EM ESTUDOS CULTURAIS</span>
+                <h3>{thiagoProfile.researchTitle}</h3>
+                <p>
+                  Uma investigação sobre identidade, corpo e masculinidades nas narrativas de homens
+                  gays.
+                </p>
+                <a
+                  className="text-link"
+                  href={thiagoProfile.research}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Conheça a pesquisa na USP <ArrowUpRight size={19} />
+                </a>
+              </div>
+              <div className="research-tags">
+                <span>Corpo</span>
+                <span>Gênero</span>
+                <span>Masculinidades</span>
+                <span>Vivências gays</span>
+              </div>
+            </article>
           </div>
         </section>
 
@@ -499,74 +725,144 @@ export function ThiagoSavedaPage() {
           id="palavras"
           aria-labelledby="words-title"
         >
-          <div className="section-kicker" data-reveal>
-            <span>04 / ENTRE PALAVRAS</span>
-            <span>PARA LEVAR A CONVERSA ADIANTE</span>
+          <div className="section-label" data-reveal>
+            <span>04 — PARA CONTINUAR PENSANDO</span>
+            <span>IDEIAS QUE PEDEM MAIS ESPAÇO.</span>
           </div>
           <div className="section-heading" data-reveal>
             <h2 id="words-title">
-              Algumas ideias
-              <br />
-              pedem <em>mais espaço.</em>
+              Entre palavras,
+              <br />a vida <em>acontece.</em>
             </h2>
-            <a className="text-link" href={instagram} target="_blank" rel="noopener noreferrer">
-              Acompanhe no Instagram <ArrowUpRight size={19} />
+            <a
+              className="text-link"
+              href={thiagoProfile.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Instagram size={18} /> Acompanhe as reflexões <ArrowUpRight size={19} />
             </a>
           </div>
-          <div className="posts-grid" data-reveal>
-            {posts.map((post) => (
+          <div className="reflections-grid" data-reveal>
+            {reflections.map((post, index) => (
               <a
-                className="post-card"
-                key={post.href}
+                className="reflection-card"
                 href={post.href}
+                key={post.href}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <div className="post-image">
+                <div className="reflection-image">
                   <img src={post.image} width="640" height="640" loading="lazy" alt={post.alt} />
-                  <span className="post-open">
-                    <ArrowUpRight size={23} />
+                  <span>0{index + 1}</span>
+                  <span className="reflection-arrow">
+                    <ArrowUpRight size={25} />
                   </span>
                 </div>
-                <span className="mini-label">{post.category}</span>
+                <span className="eyebrow">{post.tag}</span>
                 <h3>{post.title}</h3>
-                <span className="post-read">
-                  Ver publicação original <ArrowUpRight size={15} />
+                <span className="reflection-link">
+                  Ver publicação original <ArrowUpRight size={16} />
                 </span>
               </a>
             ))}
+          </div>
+          <div className="writer-note" data-reveal>
+            <BookOpen size={25} strokeWidth={1.4} />
+            <p>
+              As palavras também fazem parte da minha história como escritor.
+              <br />
+              <span>Conheça outros textos, ideias e conversas no Palavriado.</span>
+            </p>
+            <a
+              className="text-link"
+              href={thiagoProfile.blog}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Visite o blog <ArrowUpRight size={18} />
+            </a>
+          </div>
+        </section>
+
+        <section
+          className="first-step-section dark-section"
+          id="atendimento"
+          aria-labelledby="first-step-title"
+        >
+          <div className="container section-space">
+            <div className="section-label" data-reveal>
+              <span>05 — DO SEU LUGAR. NO SEU TEMPO.</span>
+              <span>ATENDIMENTO ONLINE.</span>
+            </div>
+            <div className="first-step-heading" data-reveal>
+              <h2 id="first-step-title">
+                O primeiro passo
+                <br />
+                pode ser <em>uma conversa.</em>
+              </h2>
+              <PrideFlag />
+            </div>
+            <div className="steps-grid" data-reveal>
+              {[
+                {
+                  title: "Um olá.",
+                  description:
+                    "Envie uma mensagem no Instagram profissional e solicite a triagem gratuita.",
+                },
+                {
+                  title: "Um encontro.",
+                  description:
+                    "Conte o que está buscando, faça suas perguntas e conheça a proposta de atendimento.",
+                },
+                {
+                  title: "Um caminho.",
+                  description:
+                    "Conversem sobre a continuidade, os horários e os detalhes dos encontros online.",
+                },
+              ].map((step, index) => (
+                <article key={step.title}>
+                  <div>
+                    <span>0{index + 1}</span>
+                    {index < 2 ? <ArrowRight size={24} /> : <Check size={22} />}
+                  </div>
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                </article>
+              ))}
+            </div>
+            <div className="first-step-bottom" data-reveal>
+              <span>
+                <Globe2 size={18} /> Para adolescentes e adultos, de onde você estiver.
+              </span>
+              <button className="button" onClick={openContact}>
+                Quero dar o primeiro passo <ArrowUpRight size={20} />
+              </button>
+            </div>
           </div>
         </section>
 
         <section className="faq-section container section-space" aria-labelledby="faq-title">
           <div className="faq-intro" data-reveal>
-            <span className="mini-label">ANTES DE COMEÇAR</span>
+            <span className="eyebrow">TODA PERGUNTA TEM SEU LUGAR.</span>
             <h2 id="faq-title">
-              Pode
+              Antes do
               <br />
-              <em>perguntar.</em>
+              <em>primeiro olá.</em>
             </h2>
             <p>
               Algumas dúvidas cabem aqui.
               <br />
               As outras, a gente conversa.
             </p>
-            <svg className="faq-doodle" viewBox="0 0 130 85" fill="none" aria-hidden="true">
-              <path
-                d="M8 16c36-12 77-5 70 25-5 24-28 12-15-6 17-20 32 10 40 25m-18-3 19 8 12-16"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <Star />
           </div>
           <div className="faq-list" data-reveal>
             {questions.map((item) => (
               <details key={item.question}>
                 <summary>
                   {item.question}
-                  <span className="faq-plus" aria-hidden="true" />
+                  <Plus size={20} />
                 </summary>
                 <p>{item.answer}</p>
               </details>
@@ -574,118 +870,163 @@ export function ThiagoSavedaPage() {
           </div>
         </section>
 
-        <section className="contact-section" id="contato" aria-labelledby="contact-title">
-          <div className="container contact-inner" data-reveal>
-            <div>
-              <span className="mini-label">UMA CONVERSA. UM COMEÇO.</span>
-              <h2 id="contact-title">
-                Vamos abrir espaço
+        <section className="closing-section" aria-labelledby="closing-title">
+          <div className="container closing-grid">
+            <div className="closing-copy" data-reveal>
+              <span className="eyebrow">A SUA HISTÓRIA CONTINUA.</span>
+              <h2 id="closing-title">
+                Vamos escrever
+                <br />o próximo
                 <br />
-                para <em>a sua história?</em>
+                <em>começo?</em>
               </h2>
-              <p>Você não precisa encontrar as palavras sozinho.</p>
+              <p>
+                Você pode chegar com perguntas.
+                <br />A gente começa pelo encontro.
+              </p>
+              <button className="button button-dark" onClick={openContact}>
+                Agendar triagem gratuita <ArrowUpRight size={22} />
+              </button>
             </div>
-            <button className="contact-circle" onClick={openContact}>
-              <ArrowUpRight size={46} strokeWidth={1.2} />
-              <span>
-                Agendar triagem
-                <br />
-                <strong>gratuita</strong>
-              </span>
-            </button>
-            <Asterisk className="contact-star" />
+            <div className="closing-photo" data-reveal>
+              <Portrait index={0} />
+              <div className="closing-photo-note">
+                <span>Prazer, Thiago.</span>
+                <PrideFlag />
+              </div>
+              <Star />
+            </div>
           </div>
         </section>
       </main>
-      <footer className="site-footer container">
-        <div className="footer-top">
-          <a className="wordmark" href="#inicio" aria-label="Thiago Saveda — voltar ao início">
-            <span className="wordmark-symbol">
-              ts<span>↗</span>
+
+      <footer className="site-footer dark-section">
+        <div className="container">
+          <div className="footer-top">
+            <Brand footer />
+            <div>
+              <span>PSICOPEDAGOGO & PSICANALISTA</span>
+              <span>Online · Adolescentes e adultos</span>
+            </div>
+            <a href={thiagoProfile.instagram} target="_blank" rel="noopener noreferrer">
+              <Instagram size={21} /> @thiagosaveda.psi <ArrowUpRight size={18} />
+            </a>
+          </div>
+          <div className="footer-large" aria-hidden="true">
+            THIAGO SAVEDA<span>↗</span>
+          </div>
+          <div className="footer-bottom">
+            <span>© {new Date().getFullYear()} Thiago Saveda. Cada história importa.</span>
+            <span>
+              <PrideFlag /> Um espaço para ser, por inteiro.
             </span>
-            <span className="wordmark-name">
-              thiago
-              <br />
-              saveda
-            </span>
-          </a>
-          <span>
-            Psicopedagogo & Psicanalista
-            <br />
-            <span className="footer-muted">Online · Adolescentes e adultos</span>
-          </span>
-          <a
-            className="footer-instagram"
-            href={instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Instagram size={18} /> @thiagosaveda.psi <ArrowUpRight size={16} />
-          </a>
+            <a href="#inicio" aria-label="Voltar ao início">
+              <MoveUpRight size={21} />
+            </a>
+          </div>
         </div>
-        <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} Thiago Saveda. Cada história importa.</span>
-          <span>Feito para encontros.</span>
-          <a href="#inicio" aria-label="Voltar ao início">
-            <ArrowUpRight size={17} />
-          </a>
-        </div>
+        <div className="rainbow-edge" aria-hidden="true" />
       </footer>
 
       <dialog
         ref={dialogRef}
-        className="contact-dialog"
-        aria-labelledby="dialog-title"
+        className={`site-dialog ${dialog === "portrait" ? "portrait-dialog" : "contact-dialog"}`}
+        aria-labelledby={dialog === "portrait" ? "portrait-dialog-title" : "contact-dialog-title"}
         onCancel={(event) => {
           event.preventDefault();
-          setContactOpen(false);
+          setDialog(null);
         }}
-        onClose={() => setContactOpen(false)}
+        onClose={() => setDialog(null)}
         onClick={(event) => {
-          if (event.target === event.currentTarget) setContactOpen(false);
+          if (event.target === event.currentTarget) setDialog(null);
+        }}
+        onKeyDown={(event) => {
+          if (dialog !== "portrait") return;
+          if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
+            event.preventDefault();
+            setPortraitIndex((index) => (index + 1) % portraits.length);
+          }
         }}
       >
-        <div className="dialog-content">
-          <button
-            className="dialog-close"
-            onClick={() => setContactOpen(false)}
-            aria-label="Fechar conversa"
-          >
-            <X size={23} />
-          </button>
-          <Asterisk className="dialog-star" />
-          <span className="mini-label">O PRIMEIRO PASSO</span>
-          <h2 id="dialog-title">
-            Começa com
-            <br />
-            <em>um olá.</em>
-          </h2>
-          <p>
-            Solicite sua triagem gratuita pelo Instagram profissional do Thiago. Vocês combinam o
-            horário diretamente por mensagem.
-          </p>
-          <div className="message-preview">
-            <span className="mini-label">UMA SUGESTÃO PARA COMEÇAR</span>
-            <p>{message}</p>
-            <button className="text-link" onClick={copyMessage}>
-              {copied ? <Check size={16} /> : <Copy size={16} />}
-              {copied ? "Mensagem copiada" : "Copiar mensagem"}
-            </button>
-            <span className="copy-feedback" role="status">
-              {copyFailed
-                ? "Selecione o texto acima e copie para enviar no Instagram."
-                : copied
-                  ? "Agora é só colar na conversa do Instagram."
-                  : ""}
-            </span>
+        <button className="dialog-close" onClick={() => setDialog(null)} aria-label="Fechar janela">
+          <X size={24} />
+        </button>
+        {dialog === "portrait" ? (
+          <div className="portrait-dialog-content">
+            <Portrait index={portraitIndex} eager />
+            <div className="portrait-dialog-footer">
+              <div>
+                <h2 id="portrait-dialog-title">{portraits[portraitIndex]!.caption}</h2>
+                <a
+                  href={portraits[portraitIndex]!.source}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {portraits[portraitIndex]!.origin} <ArrowUpRight size={15} />
+                </a>
+              </div>
+              <div className="gallery-controls">
+                <button
+                  aria-label="Retrato anterior"
+                  onClick={() => setPortraitIndex((index) => (index + 1) % portraits.length)}
+                >
+                  <ArrowLeft size={20} />
+                </button>
+                <span>
+                  {portraitIndex + 1} / {portraits.length}
+                </span>
+                <button
+                  aria-label="Próximo retrato"
+                  onClick={() => setPortraitIndex((index) => (index + 1) % portraits.length)}
+                >
+                  <ArrowRight size={20} />
+                </button>
+              </div>
+            </div>
           </div>
-          <a className="button" href={instagram} target="_blank" rel="noopener noreferrer">
-            <Instagram size={18} /> Abrir Instagram do Thiago <ArrowUpRight size={18} />
-          </a>
-          <small>
-            A solicitação será feita no Instagram. O horário é confirmado diretamente com Thiago.
-          </small>
-        </div>
+        ) : (
+          <div className="contact-dialog-content">
+            <PrideFlag />
+            <span className="eyebrow">UMA CONVERSA. UM COMEÇO.</span>
+            <h2 id="contact-dialog-title">
+              Começa com
+              <br />
+              <em>um olá.</em>
+            </h2>
+            <p>
+              Solicite sua triagem gratuita pelo Instagram profissional do Thiago. Vocês combinam o
+              horário diretamente por mensagem.
+            </p>
+            <div className="message-preview">
+              <span className="eyebrow">UMA SUGESTÃO PARA COMEÇAR</span>
+              <p>{message}</p>
+              <button className="text-link" onClick={copyMessage}>
+                {copied ? <Check size={17} /> : <Copy size={17} />}
+                {copied ? "Mensagem copiada" : "Copiar mensagem"}
+              </button>
+              <span role="status">
+                {copyFailed
+                  ? "Selecione a mensagem acima e copie para enviar no Instagram."
+                  : copied
+                    ? "Agora é só colar na conversa do Instagram."
+                    : ""}
+              </span>
+            </div>
+            <a
+              className="button button-dark"
+              href={thiagoProfile.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Instagram size={19} /> Abrir Instagram do Thiago <ArrowUpRight size={19} />
+            </a>
+            <small>
+              O horário é confirmado diretamente com Thiago.
+              <br />
+              Este site não envia mensagens nem realiza agendamentos automaticamente.
+            </small>
+          </div>
+        )}
       </dialog>
     </div>
   );

@@ -1,30 +1,53 @@
-# Thiago Saveda
+# Thiago Saveda — Ser você. Por inteiro.
 
-A página inicial foi criada em `src/components/ThiagoSavedaPage.tsx`, com estilos em `src/styles.css`. Mantém o projeto TanStack Start e a configuração de build existente.
+Reformulação completa com fundo escuro, verde-lima, retratos grandes, bandeira Progress Pride, biografia, espaços de escuta, formação, experiência docente, pesquisa, reflexões e contato.
 
-## Conteúdo e imagens
+## Como editar os dados
 
-A identificação profissional segue a bio fornecida e confirmada no perfil público: **psicopedagogo e psicanalista**, atendimento online para adolescentes e adultos, linguagem, masculinidades e vivências gays. A página não adiciona CRP, títulos, preços, depoimentos ou telefone.
+O arquivo **`src/data/thiago.ts`** reúne os links, as imagens, a formação e a trajetória.
 
-As imagens foram baixadas do Instagram público para `public/images/thiago/`. O site não depende de URLs temporárias do CDN do Instagram.
+- Em `thiagoProfile.education`, substitua `Instituição X`, `XXXX — XXXX` e `Conclusão: XXXX` pelos dados reais.
+- Em `thiagoProfile.experience`, substitua `Escola X`, `Faculdade X`, os períodos e `X anos`.
+- Os campos com X são espaços reservados, incluídos a pedido do usuário. Não são dados profissionais verificados.
+- As instituições de formação em Psicanálise e Psicopedagogia ainda precisam ser preenchidas. Não foi acrescentado CRP nem uma graduação em Psicologia.
 
-| Arquivo                 | Origem                                                                           |
-| ----------------------- | -------------------------------------------------------------------------------- |
-| `retrato-instagram.jpg` | Foto do perfil [@thiagosaveda.psi](https://www.instagram.com/thiagosaveda.psi/)  |
-| `pequeno-principe.jpg`  | [Publicação original](https://www.instagram.com/thiagosaveda.psi/p/DdCjRsiJ_Kc/) |
-| `professor-sim.jpg`     | [Publicação original](https://www.instagram.com/thiagosaveda.psi/p/DdjLHX7TSmL/) |
-| `marcelo-marmelo.jpg`   | [Publicação original](https://www.instagram.com/thiagosaveda.psi/p/Dcq8yY5TEQO/) |
+## Dados confirmados
 
-O retrato público está disponível em 150 × 150 pixels. Foi usado em enquadramentos compactos; para uma apresentação com foto maior e mais nítida, substituir esse arquivo pela fotografia original em alta resolução. Não houve geração nem alteração do rosto. O perfil pessoal `@saveda` pede login e confirmação de idade; suas publicações não foram acessadas.
+| Informação                                                                                                               | Fonte                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
+| Psicopedagogo e psicanalista; atendimento online para adolescentes e adultos; linguagem, masculinidades e vivências gays | [Instagram profissional](https://www.instagram.com/thiagosaveda.psi/)                                         |
+| Graduação em Letras pela UEM; experiência como professor no ensino superior; escritor                                    | [Apresentação de autoria de Thiago na Colors DJ Magazine](https://colorsdj.com/equipe-thiago-saveda/)         |
+| Mestrado no Programa de Estudos Culturais da USP, com defesa em 2022; pesquisa sobre masculinidades e vivências gays     | [Biblioteca Digital da USP](https://teses.usp.br/teses/disponiveis/100/100135/tde-22072022-125402/pt-br.html) |
 
-Os textos de apresentação e os títulos dos cartões são propostas editoriais para o site. Cada cartão leva à publicação correspondente, não a um artigo fictício.
+A experiência em escolas foi incluída conforme a informação fornecida pelo usuário. Nomes e períodos permanecem editáveis. Não foi inferido um vínculo de emprego apenas a partir de afiliações em artigos.
 
-## Contato
+## Imagens
 
-Todos os botões de triagem abrem uma janela acessível com uma sugestão de mensagem e um link para o Instagram profissional. O botão de copiar oferece uma alternativa se o navegador negar acesso à área de transferência. O site não envia mensagens, não coleta dados e não confirma agendamentos. O horário é combinado diretamente com Thiago.
+As duas novas fotografias são retratos públicos do próprio Thiago, obtidos nas fontes abaixo. Nenhum rosto ou fotografia foi gerado por IA. As versões WebP têm 640, 1024 e 1600 pixels, com escolha responsiva pelo navegador. Os enquadramentos são feitos em CSS, preservando os arquivos e a identidade.
 
-Fontes locais: DM Sans e Instrument Serif, obtidas do Google Fonts. O shell antigo foi atualizado com título, descrição, idioma, favicon e estilos da nova identidade; o pixel de vendas do projeto anterior foi removido da página.
+| Arquivo                   | Original e procedência                                                                                                                                                    |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `thiago-arco-iris-*.webp` | [Retrato original, 1969 × 1969](https://colorsdj.com/wp-content/uploads/2020/11/release_equipe_thiagosaveda.jpg), na apresentação pessoal de Thiago na Colors DJ Magazine |
+| `thiago-retrato-*.webp`   | Retrato do perfil de autoria do [Palavriado](https://palavriadoo.blogspot.com/), disponível em 1600 × 1600                                                                |
+| `retrato-instagram.jpg`   | Foto do [Instagram profissional](https://www.instagram.com/thiagosaveda.psi/), 150 × 150; usada apenas como avatar pequeno                                                |
+| `pequeno-principe.jpg`    | [Publicação original](https://www.instagram.com/thiagosaveda.psi/p/DdCjRsiJ_Kc/)                                                                                          |
+| `professor-sim.jpg`       | [Publicação original](https://www.instagram.com/thiagosaveda.psi/p/DdjLHX7TSmL/)                                                                                          |
+| `marcelo-marmelo.jpg`     | [Publicação original](https://www.instagram.com/thiagosaveda.psi/p/Dcq8yY5TEQO/)                                                                                          |
+
+O perfil pessoal `@saveda` exige login e confirmação de idade. Os novos retratos vieram das fontes públicas identificadas acima, para obter fotografias de alta resolução. A galeria permite ampliar os dois retratos e acessar sua procedência.
+
+## Funcionalidades
+
+- Menu responsivo com navegação por âncoras.
+- Retratos ampliáveis, com controles e navegação por teclado.
+- Espaços de escuta expansíveis e perguntas frequentes.
+- Triagem por Instagram com mensagem copiável e alternativa quando a área de transferência não está disponível.
+- Janelas nativas com foco contido, fechamento por Escape e retorno ao botão de origem.
+- Animações respeitam a preferência por movimento reduzido; o conteúdo permanece legível sem JavaScript.
+- Fontes locais Manrope e Instrument Serif, com licenças na pasta `public/fonts`.
+
+O site não coleta dados nem confirma horários. A triagem é solicitada diretamente a Thiago pelo Instagram.
 
 ## Desenvolvimento
 
-`npm run dev` inicia o projeto. `npm run build` gera a versão de produção. Não houve publicação ou alteração do histórico Git.
+`npm run dev` inicia o projeto. `npm run build` gera a versão de produção. O componente principal está em `src/components/ThiagoSavedaPage.tsx`; os estilos, em `src/styles.css`. O histórico Git deve ser preservado com commits normais.

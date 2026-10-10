@@ -4,17 +4,17 @@ import { ThiagoSavedaPage } from "@/components/ThiagoSavedaPage";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Thiago Saveda — Sua história merece escuta" },
+      { title: "Thiago Saveda — Ser você. Por inteiro." },
       {
         name: "description",
         content:
           "Psicanálise e psicopedagogia online com Thiago Saveda. Linguagem, masculinidades e vivências gays. Adolescentes e adultos. Solicite sua triagem gratuita.",
       },
-      { property: "og:title", content: "Thiago Saveda — Sua história merece escuta" },
+      { property: "og:title", content: "Thiago Saveda — Ser você. Por inteiro." },
       {
         property: "og:description",
         content:
-          "Um espaço para colocar em palavras o que você sente. Psicanálise e psicopedagogia online para adolescentes e adultos.",
+          "Um espaço para ser, por inteiro. Psicanálise e psicopedagogia online. Linguagem, masculinidades e vivências gays.",
       },
     ],
   }),

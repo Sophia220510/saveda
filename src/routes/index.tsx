@@ -1,17 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BrigadeiroPage } from "@/components/BrigadeiroPage";
+import { ThiagoSavedaPage } from "@/components/ThiagoSavedaPage";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "O Brigadeiro Perfeito — reprodução escolar" },
+      { title: "Thiago Saveda — Sua história merece escuta" },
       {
         name: "description",
         content:
-          "Projeto escolar O Brigadeiro Perfeito com Matheus, um confeiteiro fictício criado por IA.",
+          "Psicanálise e psicopedagogia online com Thiago Saveda. Linguagem, masculinidades e vivências gays. Adolescentes e adultos. Solicite sua triagem gratuita.",
       },
-      { name: "robots", content: "noindex, nofollow" },
+      { property: "og:title", content: "Thiago Saveda — Sua história merece escuta" },
+      {
+        property: "og:description",
+        content:
+          "Um espaço para colocar em palavras o que você sente. Psicanálise e psicopedagogia online para adolescentes e adultos.",
+      },
     ],
   }),
-  component: BrigadeiroPage,
+  component: ThiagoSavedaPage,
 });

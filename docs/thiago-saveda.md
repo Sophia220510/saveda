@@ -40,7 +40,10 @@ O perfil pessoal `@saveda` abriu uma tela de login. Os novos retratos vieram do 
 
 ## Funcionalidades
 
-- Menu responsivo com navegação por âncoras.
+- Menu responsivo com navegação por âncoras, item atual destacado e `aria-current`.
+- Indicador fixo de seção com “Você está em” e link para a próxima etapa. Seções com nomes diretos e numeração de 01 a 08.
+- Textos de leitura em 16 px e rótulos a partir de 12 px. Formação em duas colunas no computador e uma coluna no celular; credenciais em linhas no celular; cartões com quebras de texto e espaçamentos revisados.
+- Faixa tipográfica em dois grupos idênticos, cada um com três sequências e largura mínima equivalente à tela, sem espaço vazio no ciclo.
 - Retratos ampliáveis, com controles e navegação por teclado.
 - Espaços de escuta expansíveis e perguntas frequentes.
 - Percursos de Psicanálise e Psicopedagogia com abas acessíveis por teclado.

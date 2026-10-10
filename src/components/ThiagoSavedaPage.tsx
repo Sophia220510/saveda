@@ -20,6 +20,18 @@ import {
 } from "lucide-react";
 import { thiagoProfile, portraits, reflections } from "@/data/thiago";
 
+const pageSections = [
+  { id: "inicio", label: "Início", nav: "Início" },
+  { id: "sobre", label: "Sobre Thiago", nav: "Thiago" },
+  { id: "diversidade", label: "Diversidade e pertencimento", nav: "Diversidade" },
+  { id: "escuta", label: "Espaços de escuta", nav: "A escuta" },
+  { id: "trajetoria", label: "Formação e experiência", nav: "Trajetória" },
+  { id: "palavras", label: "Textos e reflexões", nav: "Reflexões" },
+  { id: "atendimento", label: "Como funciona o atendimento", nav: "Atendimento" },
+  { id: "duvidas", label: "Dúvidas frequentes", nav: "Dúvidas" },
+  { id: "contato", label: "Contato e triagem gratuita", nav: "Contato" },
+];
+
 const spaces = [
   {
     number: "01",
@@ -162,6 +174,7 @@ function Brand({ footer = false }: { footer?: boolean }) {
 
 export function ThiagoSavedaPage() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [currentSection, setCurrentSection] = useState("inicio");
   const [activeSpace, setActiveSpace] = useState<number | null>(0);
   const [approach, setApproach] = useState(0);
   const [dialog, setDialog] = useState<"contact" | "portrait" | null>(null);
@@ -188,8 +201,7 @@ export function ThiagoSavedaPage() {
     const root = rootRef.current;
     if (!root) return;
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (media.matches) return;
-    root.classList.add("motion-ready");
+    root.classList.toggle("motion-ready", !media.matches);
     const observer = new IntersectionObserver(
       (entries) =>
         entries.forEach((entry) => {
@@ -201,7 +213,7 @@ export function ThiagoSavedaPage() {
       { threshold: 0.12, rootMargin: "0px 0px -30px 0px" },
     );
     root.querySelectorAll("[data-reveal]").forEach((element) => {
-      if (element.getBoundingClientRect().top > window.innerHeight - 30)
+      if (!media.matches && element.getBoundingClientRect().top > window.innerHeight - 30)
         element.classList.add("reveal-pending");
       observer.observe(element);
     });
@@ -214,6 +226,14 @@ export function ThiagoSavedaPage() {
       root.style.setProperty("--hero-shift", `${Math.min(scroll * 0.09, 70)}px`);
       root.classList.toggle("has-scrolled", scroll > 30);
       root.classList.toggle("past-intro", scroll > 900);
+      const marker =
+        (root.querySelector(".site-header")?.getBoundingClientRect().height ?? 140) + 40;
+      let active = "inicio";
+      pageSections.forEach((section) => {
+        const element = document.getElementById(section.id);
+        if (element && element.getBoundingClientRect().top <= marker) active = section.id;
+      });
+      setCurrentSection((previous) => (previous === active ? previous : active));
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
@@ -255,6 +275,9 @@ export function ThiagoSavedaPage() {
       setCopyFailed(true);
     }
   }
+  const sectionIndex = pageSections.findIndex((section) => section.id === currentSection);
+  const section = pageSections[sectionIndex]!;
+  const nextSection = pageSections[sectionIndex + 1];
 
   return (
     <div className="saveda" ref={rootRef} id="inicio">
@@ -271,14 +294,14 @@ export function ThiagoSavedaPage() {
             className={`main-nav ${menuOpen ? "is-open" : ""}`}
             aria-label="Navegação principal"
           >
-            {[
-              ["#sobre", "Thiago"],
-              ["#escuta", "A escuta"],
-              ["#trajetoria", "Trajetória"],
-              ["#palavras", "Reflexões"],
-            ].map(([href, label]) => (
-              <a key={href} href={href} onClick={() => setMenuOpen(false)}>
-                {label}
+            {pageSections.slice(1, -1).map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                aria-current={currentSection === item.id ? "location" : undefined}
+                onClick={() => setMenuOpen(false)}
+              >
+                {item.nav}
               </a>
             ))}
             <button className="button nav-mobile-contact" onClick={openContact}>
@@ -297,6 +320,31 @@ export function ThiagoSavedaPage() {
           >
             {menuOpen ? <X /> : <Menu />}
           </button>
+        </div>
+        <div className="section-tracker">
+          <div className="container tracker-inner">
+            <div>
+              <span>Você está em</span>
+              <strong>{section.label}</strong>
+            </div>
+            {nextSection ? (
+              <a
+                href={`#${nextSection.id}`}
+                onClick={() => setMenuOpen(false)}
+                aria-label={`Próxima seção: ${nextSection.label}`}
+              >
+                <span>Próximo: {nextSection.nav}</span>
+                <span className="tracker-short-link">Próximo</span>
+                <ArrowDown size={16} />
+              </a>
+            ) : (
+              <a href="#inicio" aria-label="Voltar ao início">
+                <span>Voltar ao início</span>
+                <span className="tracker-short-link">Início</span>
+                <ArrowUpRight size={16} />
+              </a>
+            )}
+          </div>
         </div>
       </header>
 
@@ -426,12 +474,16 @@ export function ThiagoSavedaPage() {
         </div>
 
         <div className="moving-ribbon" aria-hidden="true">
-          <div>
-            {[0, 1].map((i) => (
-              <span key={i}>
-                ESCUTA <Star /> IDENTIDADE <Star /> PERTENCIMENTO <Star /> LIBERDADE DE SER{" "}
-                <Star />{" "}
-              </span>
+          <div className="ribbon-track">
+            {[0, 1].map((group) => (
+              <div className="ribbon-group" key={group}>
+                {[0, 1, 2].map((copy) => (
+                  <span className="ribbon-sequence" key={copy}>
+                    ESCUTA <Star /> IDENTIDADE <Star /> PERTENCIMENTO <Star /> LIBERDADE DE SER{" "}
+                    <Star />
+                  </span>
+                ))}
+              </div>
             ))}
           </div>
         </div>
@@ -467,7 +519,7 @@ export function ThiagoSavedaPage() {
           aria-labelledby="about-title"
         >
           <div className="section-label" data-reveal>
-            <span>01 — QUEM ESTÁ DO OUTRO LADO</span>
+            <span>01 — SOBRE THIAGO</span>
             <span>UMA PESSOA. MUITAS HISTÓRIAS.</span>
           </div>
           <div className="about-grid">
@@ -570,6 +622,10 @@ export function ThiagoSavedaPage() {
           id="diversidade"
           aria-labelledby="pride-title"
         >
+          <div className="container section-label" data-reveal>
+            <span>02 — DIVERSIDADE E PERTENCIMENTO</span>
+            <span>SUAS VIVÊNCIAS TÊM ESPAÇO.</span>
+          </div>
           <div className="container pride-grid">
             <div className="pride-copy" data-reveal>
               <span className="eyebrow">
@@ -628,7 +684,7 @@ export function ThiagoSavedaPage() {
           aria-labelledby="spaces-title"
         >
           <div className="section-label" data-reveal>
-            <span>02 — ESPAÇOS DE ESCUTA</span>
+            <span>03 — ESPAÇOS DE ESCUTA</span>
             <span>A SUA HISTÓRIA PODE COMEÇAR POR AQUI.</span>
           </div>
           <div className="section-heading" data-reveal>
@@ -796,7 +852,7 @@ export function ThiagoSavedaPage() {
         <section className="education-section" id="trajetoria" aria-labelledby="education-title">
           <div className="container section-space">
             <div className="section-label" data-reveal>
-              <span>03 — FORMAÇÃO & TRAJETÓRIA</span>
+              <span>04 — FORMAÇÃO E EXPERIÊNCIA</span>
               <span>CONHECIMENTO QUE ENCONTRA A VIDA.</span>
             </div>
             <div className="section-heading" data-reveal>
@@ -905,7 +961,7 @@ export function ThiagoSavedaPage() {
           aria-labelledby="words-title"
         >
           <div className="section-label" data-reveal>
-            <span>04 — PARA CONTINUAR PENSANDO</span>
+            <span>05 — TEXTOS E REFLEXÕES</span>
             <span>IDEIAS QUE PEDEM MAIS ESPAÇO.</span>
           </div>
           <div className="section-heading" data-reveal>
@@ -972,7 +1028,7 @@ export function ThiagoSavedaPage() {
         >
           <div className="container section-space">
             <div className="section-label" data-reveal>
-              <span>05 — DO SEU LUGAR. NO SEU TEMPO.</span>
+              <span>06 — COMO FUNCIONA O ATENDIMENTO</span>
               <span>ATENDIMENTO ONLINE.</span>
             </div>
             <div className="first-step-heading" data-reveal>
@@ -1022,9 +1078,13 @@ export function ThiagoSavedaPage() {
           </div>
         </section>
 
-        <section className="faq-section container section-space" aria-labelledby="faq-title">
+        <section
+          className="faq-section container section-space"
+          id="duvidas"
+          aria-labelledby="faq-title"
+        >
           <div className="faq-intro" data-reveal>
-            <span className="eyebrow">TODA PERGUNTA TEM SEU LUGAR.</span>
+            <span className="eyebrow">07 — DÚVIDAS FREQUENTES</span>
             <h2 id="faq-title">
               Antes do
               <br />
@@ -1050,10 +1110,10 @@ export function ThiagoSavedaPage() {
           </div>
         </section>
 
-        <section className="closing-section" aria-labelledby="closing-title">
+        <section className="closing-section" id="contato" aria-labelledby="closing-title">
           <div className="container closing-grid">
             <div className="closing-copy" data-reveal>
-              <span className="eyebrow">A SUA HISTÓRIA CONTINUA.</span>
+              <span className="eyebrow">08 — CONTATO E TRIAGEM GRATUITA</span>
               <h2 id="closing-title">
                 Vamos escrever
                 <br />o próximo

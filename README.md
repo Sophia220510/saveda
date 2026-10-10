@@ -37,6 +37,8 @@ A graduação em Letras pela UEM e o mestrado em Estudos Culturais pela USP fora
 
 ## Validação da reformulação
 
-Build de produção, TypeScript e ESLint dos arquivos alterados aprovados. Verificação no navegador em doze larguras entre 320 e 1920 pixels, sem rolagem lateral, imagens quebradas ou fotografias repetidas na página. Galeria, abas e navegação por teclado, menu móvel, perguntas frequentes, temas de escuta e cópia da mensagem de triagem conferidos. Entrada coreografada, revelações durante a rolagem, barra de progresso e preferência de movimento reduzido também verificadas.
+Build de produção, TypeScript e ESLint dos arquivos alterados aprovados. Verificação no navegador em 14 larguras entre 320 e 3840 pixels, sem rolagem lateral, imagens quebradas ou textos cortados. Textos de leitura com pelo menos 16 px e rótulos visíveis com pelo menos 12 px. A faixa ocupa toda a largura em cinco posições do ciclo de animação, inclusive em telas grandes.
+
+O cabeçalho mostra a seção atual, destaca o item do menu e permite avançar para a próxima seção. Acompanhamento das oito seções e links verificados no celular, tablet e computador. Galeria, abas, navegação por teclado, menu móvel, perguntas frequentes, temas de escuta, cópia da mensagem, animações e movimento reduzido também conferidos.
 
 O contato abre o Instagram profissional. O site não coleta dados, não envia mensagens automaticamente e não confirma horários.

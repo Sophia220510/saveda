@@ -174,13 +174,13 @@ h4 {
   top: 4px;
 }
 .brand-name {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 650;
   letter-spacing: -0.5px;
 }
 .brand-name > span {
   display: block;
-  font-size: 7px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 1.1px;
   margin-top: 4px;
@@ -192,7 +192,7 @@ h4 {
   gap: 30px;
 }
 .main-nav > a {
-  font-size: 12px;
+  font-size: 14px;
   position: relative;
   padding-block: 12px;
 }
@@ -221,7 +221,7 @@ h4 {
   border: 1px solid transparent;
   border-radius: 100px;
   padding: 19px 28px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 650;
   min-height: 58px;
   transition:
@@ -243,7 +243,7 @@ h4 {
 .button-small {
   min-height: 44px;
   padding: 12px 20px;
-  font-size: 10px;
+  font-size: 12px;
   gap: 17px;
 }
 .dark-section .button {
@@ -263,7 +263,7 @@ h4 {
 }
 .eyebrow {
   display: block;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 1.7px;
   line-height: 1.6;
@@ -297,7 +297,7 @@ h4 {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: 1.2px;
   border: 1px solid #a27c9340;
   padding: 9px 12px;
@@ -310,7 +310,7 @@ h4 {
   border-radius: 2px;
 }
 .hero-eyebrow {
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: 1.4px;
   margin-bottom: 19px;
 }
@@ -339,7 +339,7 @@ h4 {
 }
 .hero-copy > p {
   margin-top: 32px;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.9;
   color: var(--muted);
 }
@@ -350,7 +350,7 @@ h4 {
   margin-top: 29px;
 }
 .hero-actions > span {
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.8;
   color: var(--muted);
 }
@@ -369,13 +369,13 @@ h4 {
   place-items: center;
 }
 .hero-person > div {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 650;
 }
 .hero-person > div > span {
   display: block;
   font-weight: 400;
-  font-size: 9px;
+  font-size: 12px;
   margin-top: 3px;
   color: var(--muted);
 }
@@ -416,7 +416,7 @@ h4 {
   position: absolute;
   top: 72px;
   right: -42px;
-  font-size: 7px;
+  font-size: 12px;
   letter-spacing: 1.5px;
   writing-mode: vertical-rl;
 }
@@ -521,7 +521,7 @@ h4 {
   margin: 0 auto 8px;
 }
 .hero-sticker > span {
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: 0.9px;
   line-height: 1.8;
 }
@@ -538,7 +538,7 @@ h4 {
   display: flex;
   align-items: center;
   gap: 15px;
-  font-size: 6px;
+  font-size: 12px;
   letter-spacing: 1.1px;
 }
 .hero-bottom {
@@ -547,7 +547,7 @@ h4 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: 0.8px;
 }
 .hero-bottom a,
@@ -604,13 +604,13 @@ h4 {
   stroke-width: 1.3;
 }
 .credential-bar span > span {
-  font-size: 8px;
+  font-size: 12px;
   color: var(--muted);
   line-height: 1.8;
 }
 .credential-bar strong {
   display: block;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--ink);
   font-weight: 600;
 }
@@ -619,16 +619,23 @@ h4 {
   background: var(--lavender);
   border-bottom: 1px solid var(--line);
 }
-.moving-ribbon > div {
+.ribbon-track {
   display: flex;
   width: max-content;
 }
-.moving-ribbon span {
+.ribbon-group {
   display: flex;
+  flex: 0 0 auto;
+  min-width: 100vw;
+}
+.moving-ribbon .ribbon-sequence {
+  display: flex;
+  flex: 1 0 auto;
+  justify-content: space-around;
   align-items: center;
   gap: 30px;
   padding: 17px 15px;
-  font-size: 13px;
+  font-size: 15px;
   letter-spacing: 2px;
   white-space: nowrap;
 }
@@ -637,10 +644,10 @@ h4 {
   height: 18px;
   color: #92718a;
 }
-.motion-ready .moving-ribbon > div {
-  animation: ribbon 32s linear infinite;
+.motion-ready .ribbon-track {
+  animation: ribbon 75s linear infinite;
 }
-.moving-ribbon:hover > div {
+.moving-ribbon:hover .ribbon-track {
   animation-play-state: paused;
 }
 .manifesto {
@@ -652,7 +659,7 @@ h4 {
   margin-bottom: 35px;
 }
 .manifesto-meta > span:last-child {
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: 1.4px;
   color: var(--muted);
 }
@@ -693,7 +700,7 @@ h2 em {
   transform: rotate(-6deg);
 }
 .manifesto-bottom > p {
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.9;
   color: var(--muted);
   max-width: 450px;
@@ -720,7 +727,7 @@ h2 em {
   gap: 20px;
   padding-bottom: 22px;
   border-bottom: 1px solid var(--line);
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: 1.5px;
   margin-bottom: 48px;
 }
@@ -753,7 +760,7 @@ h2 em {
   top: 24px;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-  font-size: 7px;
+  font-size: 12px;
   letter-spacing: 1.3px;
   color: var(--muted);
 }
@@ -799,7 +806,7 @@ h2 em {
   height: 20px;
 }
 .collage-stamp > span {
-  font-size: 6px;
+  font-size: 12px;
   line-height: 1.5;
   letter-spacing: 1px;
   margin-top: 5px;
@@ -819,12 +826,12 @@ h2 em {
 }
 .about-copy > p {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.9;
   margin-top: 17px;
 }
 .about-copy > .lead {
-  font-size: 15px;
+  font-size: 17px;
   color: var(--ink);
   margin-top: 26px;
 }
@@ -842,7 +849,7 @@ h2 em {
   border: 1px solid var(--line);
   border-radius: 100px;
   padding: 7px 10px;
-  font-size: 8px;
+  font-size: 12px;
 }
 .identity-tags > span:nth-child(2) {
   background: #ede5f3;
@@ -856,13 +863,13 @@ h2 em {
   margin-top: 24px;
 }
 .about-details span {
-  font-size: 7px;
+  font-size: 12px;
   letter-spacing: 1px;
   font-weight: 650;
 }
 .about-details p {
   margin-top: 7px;
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.7;
   color: var(--muted);
 }
@@ -883,7 +890,7 @@ h2 em {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   background: none;
   border: 0;
@@ -929,7 +936,7 @@ h2 em {
 }
 .pride-copy > p {
   max-width: 395px;
-  font-size: 12px;
+  font-size: 14px;
   color: #cbbdc8;
   line-height: 1.9;
   margin-block: 25px;
@@ -988,7 +995,7 @@ h2 em {
   letter-spacing: -2px;
 }
 .pride-art-caption > span:last-child {
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: 1.6px;
   line-height: 1.9;
   color: #d0b9ca;
@@ -1011,7 +1018,7 @@ h2 em {
   padding-block: 29px;
   margin-top: 65px;
   gap: 18px;
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 2px;
 }
 .pride-values > svg {
@@ -1027,7 +1034,7 @@ h2 em {
   margin-bottom: 45px;
 }
 .section-heading > p {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
   line-height: 1.9;
   padding-bottom: 5px;
@@ -1065,7 +1072,7 @@ h2 em {
   z-index: 1;
 }
 .spaces-portrait .eyebrow {
-  font-size: 7px;
+  font-size: 12px;
   margin-bottom: 16px;
 }
 .spaces-portrait > div > span:last-child {
@@ -1129,13 +1136,13 @@ h2 em {
 }
 .space-card small {
   display: block;
-  font-size: 6px;
+  font-size: 12px;
   letter-spacing: 1.2px;
   color: var(--muted);
   margin-bottom: 6px;
 }
 .space-card strong {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 550;
 }
 .space-plus {
@@ -1155,7 +1162,7 @@ h2 em {
   margin-bottom: 14px;
 }
 .space-content > p {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.9;
   color: var(--muted);
 }
@@ -1163,7 +1170,7 @@ h2 em {
   margin-block: 18px;
 }
 .space-content .text-link {
-  font-size: 9px;
+  font-size: 12px;
 }
 .approach-notebook {
   display: grid;
@@ -1187,7 +1194,7 @@ h2 em {
   transform: rotate(-5deg);
 }
 .approach-intro > .eyebrow {
-  font-size: 7px;
+  font-size: 12px;
 }
 .approach-intro h3 {
   font-family: var(--serif);
@@ -1199,7 +1206,7 @@ h2 em {
   color: #936a85;
 }
 .approach-intro p {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
   line-height: 1.9;
   max-width: 290px;
@@ -1228,7 +1235,7 @@ h2 em {
   background: transparent;
   padding: 13px 0;
   margin-right: 18px;
-  font-size: 11px;
+  font-size: 12px;
   color: #7a6473;
 }
 .approach-tabs > button[aria-selected="true"] {
@@ -1244,7 +1251,7 @@ h2 em {
 }
 .approach-panel > .eyebrow {
   color: #806678;
-  font-size: 7px;
+  font-size: 12px;
 }
 .approach-panel h4 {
   font-family: var(--serif);
@@ -1255,13 +1262,13 @@ h2 em {
 }
 .approach-panel > p {
   color: var(--muted);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.9;
 }
 .approach-question-label {
   display: block;
   margin-top: 23px;
-  font-size: 6px;
+  font-size: 12px;
   letter-spacing: 1.2px;
 }
 .approach-panel ul {
@@ -1272,7 +1279,7 @@ h2 em {
 .approach-panel li {
   padding-block: 9px;
   border-bottom: 1px solid #ae8b9e30;
-  font-size: 10px;
+  font-size: 12px;
 }
 .approach-panel li > span {
   color: #966d85;
@@ -1293,7 +1300,7 @@ h2 em {
     font-size: 30px;
   }
   .approach-tabs > button {
-    font-size: 9px;
+    font-size: 12px;
   }
 }
 @media (max-width: 639px) {
@@ -1315,7 +1322,7 @@ h2 em {
     font-size: 24px;
   }
   .approach-tabs > button {
-    font-size: 9px;
+    font-size: 12px;
   }
   .approach-tabs > button:last-child {
     margin-right: 0;
@@ -1324,10 +1331,10 @@ h2 em {
     font-size: 33px;
   }
   .approach-panel li {
-    font-size: 9px;
+    font-size: 12px;
   }
   .approach-panel .text-link {
-    font-size: 8px;
+    font-size: 12px;
   }
 }
 .education-section {
@@ -1369,7 +1376,7 @@ h2 em {
   margin-bottom: 32px;
 }
 .education-card-top > span {
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 1.6px;
 }
@@ -1377,7 +1384,7 @@ h2 em {
   color: #93738a;
 }
 .education-period {
-  font-size: 8px;
+  font-size: 12px;
   color: var(--muted);
   display: block;
   margin-bottom: 9px;
@@ -1390,12 +1397,12 @@ h2 em {
 }
 .education-institution {
   display: block;
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.6;
   font-weight: 600;
 }
 .education-card p {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--muted);
   line-height: 1.8;
   margin-top: 14px;
@@ -1449,15 +1456,15 @@ h2 em {
   border-radius: 50%;
   display: grid;
   place-items: center;
-  font-size: 10px;
+  font-size: 12px;
 }
 .career-date > strong {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   padding-top: 2px;
 }
 .career-date > small {
-  font-size: 8px;
+  font-size: 12px;
   color: var(--muted);
 }
 .career-body h4 {
@@ -1465,11 +1472,11 @@ h2 em {
   margin-bottom: 7px;
 }
 .career-body > span {
-  font-size: 10px;
+  font-size: 12px;
   color: #92718a;
 }
 .career-body > p {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.9;
   color: var(--muted);
   margin-top: 12px;
@@ -1512,7 +1519,7 @@ h2 em {
   color: #ecc0d4;
 }
 .research-symbol > span:nth-child(2) {
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 2px;
 }
 .research-symbol > svg {
@@ -1522,7 +1529,7 @@ h2 em {
 }
 .research-copy .eyebrow {
   color: #c7b3c1;
-  font-size: 7px;
+  font-size: 12px;
 }
 .research-copy h3 {
   font-family: var(--serif);
@@ -1531,7 +1538,7 @@ h2 em {
   margin-top: 17px;
 }
 .research-copy p {
-  font-size: 11px;
+  font-size: 12px;
   color: #cbbac7;
   line-height: 1.8;
   margin-block: 16px;
@@ -1549,7 +1556,7 @@ h2 em {
   border: 1px solid #ffffff38;
   padding: 8px 12px;
   border-radius: 100px;
-  font-size: 8px;
+  font-size: 12px;
 }
 .reflections-grid {
   display: grid;
@@ -1590,7 +1597,7 @@ h2 em {
   background: #f8f4ede8;
   display: grid;
   place-items: center;
-  font-size: 9px;
+  font-size: 12px;
 }
 .reflection-arrow {
   position: absolute;
@@ -1608,7 +1615,7 @@ h2 em {
   transform: rotate(45deg);
 }
 .reflection-card > .eyebrow {
-  font-size: 7px;
+  font-size: 12px;
   color: #92718a;
 }
 .reflection-card h3 {
@@ -1621,7 +1628,7 @@ h2 em {
   display: flex;
   align-items: center;
   gap: 9px;
-  font-size: 9px;
+  font-size: 12px;
   margin-top: 17px;
 }
 .writer-note {
@@ -1636,12 +1643,12 @@ h2 em {
   color: #92718a;
 }
 .writer-note p {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.9;
 }
 .writer-note p > span {
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
 }
 .writer-note .text-link {
   margin-left: auto;
@@ -1702,7 +1709,7 @@ h2 em {
   margin-bottom: 14px;
 }
 .steps-grid p {
-  font-size: 11px;
+  font-size: 12px;
   color: #c5b5c4;
   line-height: 1.9;
   max-width: 300px;
@@ -1720,7 +1727,7 @@ h2 em {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 10px;
+  font-size: 12px;
   color: #d2c0cf;
 }
 .faq-section {
@@ -1734,7 +1741,7 @@ h2 em {
 .faq-intro p {
   color: var(--muted);
   line-height: 1.9;
-  font-size: 11px;
+  font-size: 12px;
   margin-top: 24px;
 }
 .faq-intro > svg {
@@ -1755,7 +1762,7 @@ h2 em {
   align-items: center;
   justify-content: space-between;
   gap: 28px;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.6;
   padding-block: 24px;
   list-style: none;
@@ -1770,7 +1777,7 @@ h2 em {
   transform: rotate(45deg);
 }
 .faq-list details > p {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.9;
   color: var(--muted);
   padding: 0 30px 24px 0;
@@ -1804,7 +1811,7 @@ h2 em {
   color: #98647e;
 }
 .closing-copy p {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--muted);
   line-height: 1.9;
   margin-block: 25px;
@@ -1865,20 +1872,20 @@ h2 em {
   border-color: var(--dark);
 }
 .footer-top > div {
-  font-size: 9px;
+  font-size: 12px;
   display: grid;
   gap: 8px;
   color: #cbbbc5;
 }
 .footer-top > div > span:first-child {
-  font-size: 7px;
+  font-size: 12px;
   letter-spacing: 1.3px;
 }
 .footer-top > a:last-child {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 10px;
+  font-size: 12px;
 }
 .footer-large {
   font-family: var(--serif);
@@ -1903,7 +1910,7 @@ h2 em {
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  font-size: 8px;
+  font-size: 12px;
   color: #c5b5c0;
   min-height: 77px;
 }
@@ -1938,7 +1945,7 @@ h2 em {
   border: 1px solid #a5889b70;
   border-radius: 100px;
   box-shadow: 0 8px 24px #30212f21;
-  font-size: 10px;
+  font-size: 12px;
   transform: translateY(100px);
   visibility: hidden;
   transition:
@@ -1991,14 +1998,14 @@ h2 em {
   transform: rotate(-7deg);
 }
 .contact-dialog-content > .eyebrow {
-  font-size: 8px;
+  font-size: 12px;
   margin-bottom: 15px;
 }
 .contact-dialog-content h2 {
   font-size: 65px;
 }
 .contact-dialog-content > p {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--muted);
   line-height: 1.8;
   margin-block: 22px;
@@ -2011,30 +2018,30 @@ h2 em {
   margin-bottom: 23px;
 }
 .message-preview .eyebrow {
-  font-size: 7px;
+  font-size: 12px;
   color: #926c86;
 }
 .message-preview p {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.8;
   margin-block: 12px;
 }
 .message-preview [role="status"] {
   display: block;
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.6;
   margin-top: 8px;
 }
 .contact-dialog-content > .button {
   width: 100%;
-  font-size: 11px;
+  font-size: 12px;
   gap: 13px;
 }
 .contact-dialog-content > small {
   display: block;
   margin-top: 16px;
   text-align: center;
-  font-size: 8px;
+  font-size: 12px;
   color: var(--muted);
   line-height: 1.8;
 }
@@ -2065,7 +2072,7 @@ h2 em {
   align-items: center;
   gap: 6px;
   margin-top: 10px;
-  font-size: 9px;
+  font-size: 12px;
   color: var(--muted);
 }
 .gallery-controls {
@@ -2083,7 +2090,7 @@ h2 em {
   border-radius: 50%;
 }
 .gallery-controls > span {
-  font-size: 9px;
+  font-size: 12px;
   white-space: nowrap;
 }
 .fallback-page {
@@ -2104,10 +2111,10 @@ h2 em {
 /* Editorial captions stay small; reading copy has room to breathe. */
 @media (min-width: 960px) {
   .hero-copy > p {
-    font-size: 16px;
+    font-size: 18px;
   }
   .about-copy > p {
-    font-size: 14px;
+    font-size: 16px;
   }
   .about-copy > .lead {
     font-size: 17px;
@@ -2120,19 +2127,19 @@ h2 em {
   .approach-panel > p,
   .approach-intro p,
   .pride-copy > p {
-    font-size: 13px;
+    font-size: 15px;
   }
   .education-card p {
-    font-size: 12px;
-  }
-  .faq-list summary {
     font-size: 14px;
   }
+  .faq-list summary {
+    font-size: 16px;
+  }
   .section-heading > p {
-    font-size: 13px;
+    font-size: 15px;
   }
   .approach-panel li {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 @media (max-width: 639px) {
@@ -2145,13 +2152,13 @@ h2 em {
   .approach-intro p,
   .pride-copy > p,
   .research-copy p {
-    font-size: 13px;
+    font-size: 15px;
   }
   .education-card p {
-    font-size: 11px;
+    font-size: 12px;
   }
   .approach-panel li {
-    font-size: 11px;
+    font-size: 12px;
   }
 }
 
@@ -2384,7 +2391,7 @@ h2 em {
     display: flex;
   }
   .main-nav > a {
-    font-size: 14px;
+    font-size: 16px;
     padding-block: 13px;
     border-bottom: 1px solid var(--line);
   }
@@ -2415,16 +2422,16 @@ h2 em {
     letter-spacing: -2px;
   }
   .hero-eyebrow {
-    font-size: 6px;
+    font-size: 12px;
     letter-spacing: 1px;
   }
   .pride-pill {
-    font-size: 6px;
+    font-size: 12px;
     letter-spacing: 1px;
     padding: 8px;
   }
   .hero-copy > p {
-    font-size: 12px;
+    font-size: 14px;
   }
   .hero-person > svg {
     display: none;
@@ -2446,7 +2453,7 @@ h2 em {
     height: 33px;
   }
   .hero-pride-card > span {
-    font-size: 16px;
+    font-size: 18px;
   }
   .hero-sticker {
     width: 88px;
@@ -2468,16 +2475,16 @@ h2 em {
   }
   .photo-index {
     right: -28px;
-    font-size: 6px;
+    font-size: 12px;
   }
   .hero-bottom {
-    font-size: 7px;
+    font-size: 12px;
   }
   .credential-bar strong {
-    font-size: 9px;
+    font-size: 12px;
   }
   .credential-bar span > span {
-    font-size: 6px;
+    font-size: 12px;
   }
   .credential-bar svg {
     width: 22px;
@@ -2486,7 +2493,7 @@ h2 em {
     padding-block: 85px;
   }
   .section-label {
-    font-size: 6px;
+    font-size: 12px;
     margin-bottom: 38px;
   }
   .manifesto h2 {
@@ -2531,10 +2538,10 @@ h2 em {
     font-size: 46px;
   }
   .about-copy > p {
-    font-size: 11px;
+    font-size: 12px;
   }
   .about-copy > .lead {
-    font-size: 13px;
+    font-size: 15px;
   }
   .about-details {
     grid-template-columns: 1fr;
@@ -2562,13 +2569,13 @@ h2 em {
     font-size: 35px;
   }
   .pride-art-caption > span:last-child {
-    font-size: 6px;
+    font-size: 12px;
   }
   .pride-note {
     font-size: 22px;
   }
   .pride-values {
-    font-size: 7px;
+    font-size: 12px;
     letter-spacing: 1.5px;
   }
   .spaces-grid {
@@ -2590,7 +2597,7 @@ h2 em {
     padding-inline: 12px;
   }
   .space-card strong {
-    font-size: 12px;
+    font-size: 14px;
   }
   .space-content {
     padding-left: 22px;
@@ -2624,18 +2631,18 @@ h2 em {
     gap: 7px;
   }
   .career-date > strong {
-    font-size: 8px;
+    font-size: 12px;
   }
   .career-date > small {
-    font-size: 7px;
+    font-size: 12px;
   }
   .career-date > span {
     width: 28px;
     height: 28px;
-    font-size: 9px;
+    font-size: 12px;
   }
   .career-body h4 {
-    font-size: 15px;
+    font-size: 17px;
   }
   .research-copy h3 {
     font-size: 32px;
@@ -2647,7 +2654,7 @@ h2 em {
     font-size: 27px;
   }
   .reflection-card > .eyebrow {
-    font-size: 6px;
+    font-size: 12px;
   }
   .steps-grid {
     gap: 26px;
@@ -2698,10 +2705,10 @@ h2 em {
     font-size: 32px;
   }
   .brand-name {
-    font-size: 13px;
+    font-size: 15px;
   }
   .brand-name > span {
-    font-size: 5px;
+    font-size: 12px;
     letter-spacing: 0.55px;
   }
   .header-contact {
@@ -2738,12 +2745,12 @@ h2 em {
     padding-bottom: 0;
   }
   .pride-pill {
-    font-size: 6px;
+    font-size: 12px;
     letter-spacing: 1.05px;
     margin-bottom: 17px;
   }
   .hero-eyebrow {
-    font-size: 6px;
+    font-size: 12px;
     letter-spacing: 0.9px;
     margin-bottom: 17px;
   }
@@ -2753,7 +2760,7 @@ h2 em {
     letter-spacing: -2.4px;
   }
   .hero-copy > p {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.85;
     margin-top: 25px;
     max-width: 355px;
@@ -2768,22 +2775,22 @@ h2 em {
   }
   .hero-actions > .button {
     padding: 16px 22px;
-    font-size: 10px;
+    font-size: 12px;
     min-height: 53px;
     gap: 15px;
   }
   .hero-actions > span {
     display: block;
-    font-size: 7px;
+    font-size: 12px;
   }
   .hero-person {
     margin-top: 21px;
   }
   .hero-person > div {
-    font-size: 10px;
+    font-size: 12px;
   }
   .hero-person > div > span {
-    font-size: 8px;
+    font-size: 12px;
   }
   .hero-person-mark {
     width: 32px;
@@ -2823,16 +2830,16 @@ h2 em {
   .photo-index {
     right: -24px;
     top: 58px;
-    font-size: 5px;
+    font-size: 12px;
   }
   .photo-caption {
     bottom: -7px;
-    font-size: 5px;
+    font-size: 12px;
     gap: 8px;
   }
   .hero-bottom {
     padding-block: 17px;
-    font-size: 7px;
+    font-size: 12px;
     gap: 10px;
   }
   .hero-bottom > span {
@@ -2842,7 +2849,7 @@ h2 em {
     gap: 7px;
   }
   .hero-bottom a:last-child {
-    font-size: 6px;
+    font-size: 12px;
     letter-spacing: 0.4px;
   }
   .hero-bottom a > svg[viewBox="0 0 300 180"] {
@@ -2864,11 +2871,11 @@ h2 em {
     justify-content: flex-start;
   }
   .credential-bar strong {
-    font-size: 7px;
+    font-size: 12px;
     line-height: 1.6;
   }
   .credential-bar span > span {
-    font-size: 6px;
+    font-size: 12px;
     line-height: 1.5;
   }
   .credential-bar svg {
@@ -2876,7 +2883,7 @@ h2 em {
     height: 22px;
   }
   .moving-ribbon span {
-    font-size: 9px;
+    font-size: 12px;
     gap: 19px;
     padding: 13px 10px;
   }
@@ -2891,7 +2898,7 @@ h2 em {
     margin-bottom: 27px;
   }
   .manifesto-meta .eyebrow {
-    font-size: 7px;
+    font-size: 12px;
     letter-spacing: 1px;
   }
   .manifesto-meta > span:last-child {
@@ -2916,7 +2923,7 @@ h2 em {
     height: 21px;
   }
   .manifesto-bottom p {
-    font-size: 10px;
+    font-size: 12px;
     line-height: 1.8;
   }
   .manifesto-bottom .round-link {
@@ -2925,7 +2932,7 @@ h2 em {
   .section-label {
     padding-bottom: 16px;
     margin-bottom: 32px;
-    font-size: 6px;
+    font-size: 12px;
     letter-spacing: 1px;
   }
   .section-label > span:last-child {
@@ -2962,7 +2969,7 @@ h2 em {
   }
   .vertical-caption {
     left: -20px;
-    font-size: 6px;
+    font-size: 12px;
   }
   .collage-note {
     left: 14px;
@@ -2974,22 +2981,22 @@ h2 em {
     top: 30px;
   }
   .about-copy > .eyebrow {
-    font-size: 7px;
+    font-size: 12px;
     margin-bottom: 17px;
   }
   .about-copy h2 {
     font-size: 47px;
   }
   .about-copy > p {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.9;
   }
   .about-copy > .lead {
-    font-size: 14px;
+    font-size: 16px;
     margin-top: 21px;
   }
   .identity-tags > span {
-    font-size: 7px;
+    font-size: 12px;
   }
   .about-details {
     grid-template-columns: repeat(3, 1fr);
@@ -2999,11 +3006,11 @@ h2 em {
     display: block;
   }
   .about-details span {
-    font-size: 6px;
+    font-size: 12px;
   }
   .about-details p {
     margin-top: 7px;
-    font-size: 8px;
+    font-size: 12px;
   }
   .about-sign {
     gap: 15px;
@@ -3012,7 +3019,7 @@ h2 em {
     font-size: 28px;
   }
   .about-sign .text-link {
-    font-size: 8px;
+    font-size: 12px;
   }
   .pride-section {
     padding-top: 60px;
@@ -3022,7 +3029,7 @@ h2 em {
     gap: 35px;
   }
   .pride-copy .eyebrow {
-    font-size: 7px;
+    font-size: 12px;
     margin-bottom: 22px;
   }
   .pride-copy h2 {
@@ -3030,7 +3037,7 @@ h2 em {
     line-height: 0.97;
   }
   .pride-copy > p {
-    font-size: 12px;
+    font-size: 14px;
   }
   .pride-art {
     min-height: 348px;
@@ -3053,7 +3060,7 @@ h2 em {
     font-size: 46px;
   }
   .pride-art-caption > span:last-child {
-    font-size: 7px;
+    font-size: 12px;
   }
   .pride-note {
     font-size: 22px;
@@ -3063,7 +3070,7 @@ h2 em {
     gap: 10px;
     margin-top: 31px;
     padding-block: 23px;
-    font-size: 6px;
+    font-size: 12px;
     letter-spacing: 1px;
     flex-wrap: wrap;
   }
@@ -3084,7 +3091,7 @@ h2 em {
     margin-top: 22px;
   }
   .section-heading > p {
-    font-size: 11px;
+    font-size: 12px;
   }
   .spaces-grid {
     grid-template-columns: 1fr;
@@ -3113,7 +3120,7 @@ h2 em {
     left: 18px;
   }
   .spaces-portrait .eyebrow {
-    font-size: 6px;
+    font-size: 12px;
     margin-bottom: 12px;
   }
   .space-card > button {
@@ -3121,10 +3128,10 @@ h2 em {
     gap: 12px;
   }
   .space-card strong {
-    font-size: 12px;
+    font-size: 14px;
   }
   .space-card small {
-    font-size: 5px;
+    font-size: 12px;
   }
   .space-content {
     padding: 0 20px 23px;
@@ -3133,7 +3140,7 @@ h2 em {
     font-size: 29px;
   }
   .space-content > p {
-    font-size: 11px;
+    font-size: 12px;
   }
   .education-cards {
     gap: 12px;
@@ -3146,7 +3153,7 @@ h2 em {
     margin-bottom: 25px;
   }
   .education-card-top > span {
-    font-size: 7px;
+    font-size: 12px;
     letter-spacing: 0.6px;
   }
   .education-card-top > svg {
@@ -3154,16 +3161,16 @@ h2 em {
     height: 20px;
   }
   .education-period {
-    font-size: 7px;
+    font-size: 12px;
   }
   .education-card h3 {
     font-size: 25px;
   }
   .education-institution {
-    font-size: 8px;
+    font-size: 12px;
   }
   .education-card p {
-    font-size: 9px;
+    font-size: 12px;
     line-height: 1.75;
   }
   .education-source {
@@ -3182,7 +3189,7 @@ h2 em {
     padding-bottom: 27px;
   }
   .career-heading .eyebrow {
-    font-size: 7px;
+    font-size: 12px;
   }
   .career-heading h3 {
     font-size: 42px;
@@ -3199,21 +3206,21 @@ h2 em {
     align-items: center;
   }
   .career-date > strong {
-    font-size: 9px;
+    font-size: 12px;
     padding-top: 0;
   }
   .career-date > small {
     margin-left: auto;
-    font-size: 7px;
+    font-size: 12px;
   }
   .career-body h4 {
-    font-size: 16px;
+    font-size: 18px;
   }
   .career-body > span {
-    font-size: 10px;
+    font-size: 12px;
   }
   .career-body > p {
-    font-size: 11px;
+    font-size: 12px;
   }
   .research-feature {
     padding: 26px;
@@ -3238,17 +3245,17 @@ h2 em {
     font-size: 34px;
   }
   .research-copy .eyebrow {
-    font-size: 6px;
+    font-size: 12px;
   }
   .research-copy .text-link {
-    font-size: 9px;
+    font-size: 12px;
   }
   .research-tags {
     grid-column: 1;
     gap: 7px;
   }
   .research-tags > span {
-    font-size: 7px;
+    font-size: 12px;
     padding: 7px 10px;
   }
   .reflections-grid {
@@ -3266,10 +3273,10 @@ h2 em {
     font-size: 34px;
   }
   .reflection-card > .eyebrow {
-    font-size: 7px;
+    font-size: 12px;
   }
   .reflection-link {
-    font-size: 10px;
+    font-size: 12px;
   }
   .writer-note {
     flex-wrap: wrap;
@@ -3281,10 +3288,10 @@ h2 em {
   }
   .writer-note p {
     width: calc(100% - 36px);
-    font-size: 10px;
+    font-size: 12px;
   }
   .writer-note p > span {
-    font-size: 9px;
+    font-size: 12px;
   }
   .writer-note .text-link {
     margin-left: 36px;
@@ -3319,7 +3326,7 @@ h2 em {
     font-size: 36px;
   }
   .steps-grid p {
-    font-size: 12px;
+    font-size: 14px;
     max-width: 100%;
   }
   .first-step-bottom {
@@ -3328,12 +3335,12 @@ h2 em {
     gap: 24px;
   }
   .first-step-bottom > span {
-    font-size: 9px;
+    font-size: 12px;
     line-height: 1.8;
     align-items: flex-start;
   }
   .first-step-bottom .button {
-    font-size: 10px;
+    font-size: 12px;
     width: 100%;
     gap: 14px;
   }
@@ -3345,18 +3352,18 @@ h2 em {
     font-size: 53px;
   }
   .faq-intro .eyebrow {
-    font-size: 7px;
+    font-size: 12px;
   }
   .faq-intro > svg {
     display: none;
   }
   .faq-list summary {
-    font-size: 12px;
+    font-size: 14px;
     padding-block: 22px;
     gap: 20px;
   }
   .faq-list details > p {
-    font-size: 11px;
+    font-size: 12px;
     padding-right: 10px;
   }
   .closing-section {
@@ -3367,17 +3374,17 @@ h2 em {
     gap: 33px;
   }
   .closing-copy > .eyebrow {
-    font-size: 7px;
+    font-size: 12px;
     margin-bottom: 20px;
   }
   .closing-copy h2 {
     font-size: 72px;
   }
   .closing-copy p {
-    font-size: 12px;
+    font-size: 14px;
   }
   .closing-copy .button {
-    font-size: 10px;
+    font-size: 12px;
     min-height: 53px;
   }
   .closing-photo {
@@ -3412,7 +3419,7 @@ h2 em {
   }
   .footer-top > a:last-child {
     width: 100%;
-    font-size: 10px;
+    font-size: 12px;
     gap: 9px;
   }
   .footer-large {
@@ -3422,7 +3429,7 @@ h2 em {
   }
   .footer-bottom {
     min-height: 72px;
-    font-size: 7px;
+    font-size: 12px;
     gap: 10px;
     padding-block: 13px;
   }
@@ -3449,7 +3456,7 @@ h2 em {
     font-size: 56px;
   }
   .contact-dialog-content > .button {
-    font-size: 9px;
+    font-size: 12px;
     padding-inline: 15px;
     gap: 10px;
   }
@@ -3474,10 +3481,10 @@ h2 em {
 }
 @media (max-width: 359px) {
   .brand-name {
-    font-size: 12px;
+    font-size: 14px;
   }
   .brand-name > span {
-    font-size: 4px;
+    font-size: 12px;
   }
   .hero h1 {
     font-size: 66px;
@@ -3499,10 +3506,10 @@ h2 em {
     height: 77px;
   }
   .hero-sticker strong {
-    font-size: 16px;
+    font-size: 18px;
   }
   .hero-bottom a:last-child {
-    font-size: 5px;
+    font-size: 12px;
   }
   .hero-bottom a > svg {
     width: 14px;
@@ -3544,7 +3551,7 @@ h2 em {
     min-height: 242px;
   }
   .space-card strong {
-    font-size: 10px;
+    font-size: 12px;
   }
   .space-card > button {
     gap: 9px;
@@ -3592,12 +3599,885 @@ h2 em {
   .approach-intro p,
   .pride-copy > p,
   .research-copy p {
-    font-size: 13px;
+    font-size: 15px;
   }
   .education-card p {
-    font-size: 11px;
+    font-size: 12px;
   }
   .approach-panel li {
-    font-size: 11px;
+    font-size: 12px;
+  }
+}
+
+/* Consistent reading sizes and section orientation on every viewport. */
+html {
+  scroll-padding-top: 170px;
+}
+body {
+  font-size: 16px;
+}
+.container {
+  width: min(1280px, calc(100% - 80px));
+}
+.hero-grid {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+}
+.about-grid,
+.pride-grid,
+.spaces-grid,
+.closing-grid,
+.faq-section,
+.approach-notebook {
+  gap: clamp(32px, 5vw, 75px);
+}
+.hero-grid > *,
+.about-grid > *,
+.pride-grid > *,
+.spaces-grid > *,
+.closing-grid > *,
+.faq-section > *,
+.approach-notebook > *,
+.education-cards > *,
+.career-list article > * {
+  min-width: 0;
+}
+.brand {
+  min-width: 0;
+}
+.brand-name {
+  font-size: 20px;
+  min-width: 0;
+}
+.brand-name > span {
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: 1.35;
+  max-width: 205px;
+}
+.main-nav {
+  gap: 18px;
+}
+.main-nav > a {
+  font-size: 14px;
+  white-space: nowrap;
+}
+.main-nav > a[aria-current="location"] {
+  color: #75435f;
+  font-weight: 750;
+}
+.main-nav > a[aria-current="location"]::after {
+  transform: scaleX(1);
+  height: 2px;
+}
+.button,
+.button-small,
+.hero-actions > .button,
+.first-step-bottom .button,
+.closing-copy .button {
+  font-size: 14px;
+  line-height: 1.4;
+  gap: 14px;
+}
+.button-small {
+  padding-inline: 20px;
+}
+.eyebrow,
+.hero-eyebrow,
+.pride-pill,
+.section-label,
+.manifesto-meta > span:last-child,
+.approach-intro > .eyebrow,
+.approach-panel > .eyebrow,
+.research-copy .eyebrow,
+.reflection-card > .eyebrow {
+  font-size: 12px;
+  letter-spacing: 1px;
+  line-height: 1.6;
+}
+.hero-eyebrow {
+  max-width: 460px;
+}
+.hero-person > div {
+  font-size: 15px;
+}
+.hero-person > div > span {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: 5px;
+}
+.hero-actions > span {
+  font-size: 14px;
+  line-height: 1.6;
+}
+.hero-actions {
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px 20px;
+}
+.hero-copy > p,
+.about-copy > p,
+.space-content > p,
+.career-body > p,
+.research-copy p,
+.faq-list details > p,
+.steps-grid p,
+.approach-panel > p,
+.approach-intro p,
+.pride-copy > p,
+.manifesto-bottom > p,
+.closing-copy p,
+.faq-intro p,
+.writer-note p,
+.writer-note p > span {
+  font-size: 16px;
+  line-height: 1.8;
+}
+.about-copy > .lead {
+  font-size: 18px;
+  line-height: 1.7;
+}
+.hero-bottom {
+  font-size: 13px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.hero-bottom a,
+.hero-bottom a:last-child {
+  font-size: 13px;
+  letter-spacing: 0.3px;
+}
+.credential-bar > .container {
+  gap: 24px;
+}
+.credential-bar > .container > span {
+  min-width: 0;
+  padding-right: 18px;
+  align-items: center;
+}
+.credential-bar > .container > span:last-child {
+  padding-right: 0;
+}
+.credential-bar span > span {
+  font-size: 14px;
+  line-height: 1.6;
+  min-width: 0;
+}
+.credential-bar strong {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+.section-heading {
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.section-heading > p {
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 320px;
+}
+.section-label {
+  align-items: flex-start;
+  gap: 24px;
+}
+.section-label > span:first-child {
+  font-weight: 700;
+  color: #75435f;
+}
+.dark-section .section-label {
+  border-color: #ffffff35;
+}
+.dark-section .section-label > span:first-child {
+  color: #edc4d9;
+}
+.dark-section .section-label > span:last-child {
+  color: #d1c0cd;
+}
+.section-label > span:last-child {
+  max-width: 390px;
+  line-height: 1.6;
+}
+.identity-tags > span,
+.space-tags > span,
+.research-tags > span {
+  font-size: 13px;
+  padding: 8px 12px;
+  line-height: 1.4;
+}
+.about-details {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.about-details span {
+  font-size: 12px;
+  letter-spacing: 0.4px;
+}
+.about-details p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+.text-link,
+.about-sign .text-link,
+.space-content .text-link,
+.approach-panel .text-link,
+.research-copy .text-link {
+  font-size: 14px;
+  line-height: 1.6;
+}
+.pride-copy .eyebrow,
+.spaces-portrait .eyebrow {
+  font-size: 12px;
+}
+.pride-copy > p {
+  max-width: 460px;
+}
+.pride-values {
+  font-size: 12px;
+  letter-spacing: 1px;
+  flex-wrap: wrap;
+}
+.pride-art-caption > span:last-child {
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+.spaces-grid {
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+}
+.spaces-portrait {
+  top: 175px;
+}
+.space-card > button {
+  align-items: center;
+  padding: 23px 20px;
+  gap: 16px;
+}
+.space-card > button > span:nth-child(2) {
+  min-width: 0;
+  flex: 1;
+}
+.space-card small {
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.6px;
+}
+.space-card strong {
+  display: block;
+  font-size: 18px;
+  line-height: 1.4;
+}
+.space-icon {
+  flex-shrink: 0;
+}
+.space-content {
+  padding: 0 28px 28px 78px;
+}
+.space-content h3 {
+  font-size: 32px;
+  line-height: 1.15;
+}
+.space-content > p {
+  overflow-wrap: break-word;
+}
+.space-content .space-tags {
+  gap: 8px;
+}
+.approach-tabs > button {
+  font-size: 16px;
+  padding-block: 16px;
+}
+.approach-question-label {
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: 0.6px;
+}
+.approach-panel li {
+  font-size: 15px;
+  line-height: 1.7;
+}
+.education-cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+.education-card {
+  min-height: 310px;
+  padding: 30px;
+}
+.education-card-top > span,
+.education-period {
+  font-size: 13px;
+}
+.education-card h3 {
+  font-size: 34px;
+}
+.education-institution {
+  font-size: 16px;
+  line-height: 1.6;
+}
+.education-card p {
+  font-size: 16px;
+  line-height: 1.7;
+}
+.education-source {
+  top: 75px;
+}
+.career-heading {
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+}
+.career-list article {
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr) 38px;
+}
+.career-date > strong,
+.career-body > span {
+  font-size: 15px;
+  line-height: 1.5;
+}
+.career-date > small,
+.career-date > span {
+  font-size: 13px;
+  line-height: 1.5;
+}
+.career-date {
+  grid-template-columns: 38px minmax(0, 1fr);
+}
+.career-body h4 {
+  font-size: 21px;
+  line-height: 1.4;
+}
+.research-feature {
+  grid-template-columns: 125px minmax(0, 1fr);
+}
+.research-tags {
+  grid-column: 2;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.reflection-link {
+  font-size: 14px;
+}
+.writer-note {
+  align-items: flex-start;
+}
+.writer-note .text-link {
+  flex-shrink: 0;
+}
+.steps-grid p {
+  max-width: none;
+}
+.first-step-bottom > span {
+  font-size: 16px;
+  line-height: 1.7;
+}
+.faq-list summary {
+  font-size: 17px;
+  padding-block: 25px;
+}
+.footer-top {
+  flex-wrap: wrap;
+}
+.footer-top > div,
+.footer-top > div > span:first-child,
+.footer-top > a:last-child,
+.footer-bottom {
+  font-size: 14px;
+  line-height: 1.6;
+}
+.footer-bottom {
+  padding-block: 22px;
+}
+.footer-bottom > span:nth-child(2) {
+  font-size: 13px;
+}
+.floating-contact {
+  font-size: 14px;
+}
+.contact-dialog-content > .eyebrow,
+.message-preview .eyebrow {
+  font-size: 12px;
+}
+.contact-dialog-content > p,
+.message-preview p {
+  font-size: 16px;
+  line-height: 1.7;
+}
+.contact-dialog-content > small,
+.message-preview [role="status"],
+.portrait-dialog-footer a {
+  font-size: 13px;
+}
+.contact-dialog-content > .button {
+  font-size: 14px;
+  flex-wrap: wrap;
+}
+.gallery-controls > span {
+  font-size: 14px;
+}
+.section-tracker {
+  background: #efe7ec;
+  border-block: 1px solid #b393a230;
+}
+.tracker-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  min-height: 48px;
+  padding-block: 9px;
+}
+.tracker-inner > div {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  min-width: 0;
+}
+.tracker-inner > div > span {
+  color: #776270;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.tracker-inner strong {
+  font-size: 14px;
+  color: #58364c;
+  line-height: 1.5;
+}
+.tracker-inner > a {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 12px;
+  color: #76576a;
+  white-space: nowrap;
+}
+.tracker-short-link {
+  display: none;
+}
+.moving-ribbon .ribbon-sequence {
+  font-size: 15px;
+  letter-spacing: 1.3px;
+  padding: 19px 20px;
+  gap: 35px;
+}
+.manifesto h2 > svg {
+  right: 0;
+}
+.approach-tabs > button {
+  padding-right: 6px;
+}
+@media (max-width: 1199px) {
+  .header-inner {
+    height: 82px;
+  }
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 82px;
+    left: 0;
+    right: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    padding: 20px 28px 28px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    box-shadow: 0 14px 30px #30212f14;
+    max-height: calc(100dvh - 90px);
+    overflow-y: auto;
+  }
+  .main-nav.is-open {
+    display: flex;
+  }
+  .main-nav > a {
+    font-size: 16px;
+    padding: 14px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .main-nav > a::after {
+    display: none;
+  }
+  .main-nav > a[aria-current="location"] {
+    background: #ede0e8;
+    border-radius: 5px;
+  }
+  .nav-mobile-contact {
+    display: flex;
+    margin-top: 18px;
+  }
+  .menu-button {
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .header-contact {
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  .hero-actions > span {
+    display: block;
+  }
+  .about-details > div {
+    display: block;
+  }
+  .about-details p {
+    margin-top: 8px;
+  }
+}
+@media (max-width: 767px) {
+  .container {
+    width: calc(100% - 40px);
+  }
+  .hero-grid,
+  .about-grid,
+  .pride-grid,
+  .spaces-grid,
+  .closing-grid,
+  .faq-section,
+  .approach-notebook {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .hero-grid {
+    gap: 38px;
+  }
+  .hero h1 {
+    font-size: clamp(66px, 19vw, 114px);
+  }
+  .hero-copy > p {
+    font-size: 16px;
+  }
+  .hero-visual {
+    width: min(100% - 26px, 425px);
+    margin: 0 auto 20px;
+  }
+  .about-collage {
+    max-width: 460px;
+    width: calc(100% - 10px);
+    margin-inline: auto;
+    padding-right: 60px;
+    padding-bottom: 75px;
+  }
+  .about-main-photo {
+    height: 430px;
+  }
+  .collage-note {
+    bottom: 30px;
+  }
+  .about-details {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 17px;
+  }
+  .about-details > div {
+    display: grid;
+    grid-template-columns: 115px 1fr;
+    gap: 12px;
+    align-items: baseline;
+  }
+  .about-details p {
+    margin-top: 0;
+  }
+  .spaces-portrait {
+    position: relative;
+    top: auto;
+    height: 375px;
+  }
+  .section-heading h2 {
+    font-size: clamp(44px, 9vw, 65px);
+  }
+  .education-cards {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+  .education-card {
+    min-height: 0;
+    padding: 26px;
+  }
+  .education-card p {
+    margin-top: 18px;
+  }
+  .career-heading,
+  .career-list article {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+  .career-date {
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .career-date > small {
+    margin-left: 0;
+  }
+  .career-marker {
+    display: none;
+  }
+  .research-feature {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .research-tags {
+    grid-column: 1;
+  }
+  .reflections-grid,
+  .steps-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .reflection-card:nth-child(n) {
+    margin-top: 0;
+  }
+  .faq-intro > svg {
+    display: none;
+  }
+  .about-copy h2 {
+    font-size: 50px;
+  }
+  .pride-art {
+    max-width: 460px;
+    width: 100%;
+    margin-inline: auto;
+  }
+  .pride-art-caption > span:first-child {
+    font-size: clamp(36px, 10vw, 55px);
+  }
+  .pride-copy .eyebrow {
+    font-size: 12px;
+  }
+  .pride-values {
+    padding-block: 25px;
+  }
+  .section-label > span:last-child {
+    display: none;
+  }
+  .space-content {
+    padding: 0 22px 26px;
+  }
+  .space-card > button {
+    gap: 12px;
+    padding: 21px 16px;
+  }
+  .space-card strong {
+    font-size: 17px;
+  }
+  .space-card small {
+    font-size: 12px;
+    letter-spacing: 0.3px;
+  }
+  .approach-tabs > button {
+    font-size: 15px;
+    gap: 7px;
+    margin-right: 12px;
+  }
+  .approach-panel .text-link {
+    font-size: 14px;
+  }
+  .writer-note {
+    flex-wrap: wrap;
+  }
+  .writer-note p {
+    width: calc(100% - 40px);
+  }
+  .first-step-bottom > span {
+    font-size: 15px;
+  }
+  .footer-bottom {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 639px) {
+  .header-inner {
+    height: 80px;
+    gap: 12px;
+  }
+  .brand {
+    flex: 1;
+    gap: 8px;
+  }
+  .brand-name {
+    font-size: 18px;
+  }
+  .brand-name > span {
+    font-size: 12px;
+    max-width: 170px;
+  }
+  .brand-mark {
+    width: 34px;
+    flex-shrink: 0;
+  }
+  .header-contact {
+    font-size: 0;
+    width: 40px;
+    min-height: 40px;
+    padding: 0;
+    gap: 0;
+  }
+  .main-nav {
+    top: 80px;
+  }
+  .tracker-inner {
+    gap: 12px;
+    min-height: 58px;
+  }
+  .tracker-inner > div {
+    display: grid;
+    gap: 1px;
+  }
+  .tracker-inner strong {
+    font-size: 13px;
+  }
+  .tracker-inner > a > span {
+    display: none;
+  }
+  .tracker-inner > a {
+    width: auto;
+    min-height: 40px;
+    display: flex;
+    justify-content: center;
+    padding: 8px 11px;
+    border: 1px solid #b393a260;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+  .tracker-inner > a > .tracker-short-link {
+    display: inline;
+    font-size: 12px;
+  }
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hero-actions > .button {
+    padding: 16px 20px;
+    font-size: 14px;
+  }
+  .hero-actions > span {
+    font-size: 14px;
+  }
+  .hero-person > div {
+    font-size: 15px;
+  }
+  .hero-person > div > span {
+    font-size: 13px;
+  }
+  .hero-bottom {
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .hero-bottom a {
+    font-size: 13px;
+  }
+  .hero-bottom a:last-child {
+    font-size: 13px;
+  }
+  .credential-bar > .container {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding-block: 24px;
+  }
+  .credential-bar > .container > span {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 0;
+    border: 0;
+    justify-content: flex-start;
+  }
+  .credential-bar > .container > span:last-child {
+    justify-content: flex-start;
+  }
+  .credential-bar strong {
+    font-size: 16px;
+  }
+  .credential-bar span > span {
+    font-size: 14px;
+  }
+  .moving-ribbon .ribbon-sequence {
+    font-size: 14px;
+    gap: 25px;
+    padding: 17px 15px;
+  }
+  .photo-index {
+    display: none;
+  }
+  .photo-caption {
+    font-size: 12px;
+    letter-spacing: 0.3px;
+    max-width: 250px;
+    bottom: -18px;
+  }
+  .photo-caption > span {
+    text-align: right;
+  }
+  .collage-stamp {
+    width: 99px;
+    height: 99px;
+  }
+  .collage-stamp > span {
+    font-size: 12px;
+    letter-spacing: 0;
+  }
+  .vertical-caption {
+    display: none;
+  }
+  .pride-values {
+    justify-content: flex-start;
+    gap: 12px;
+  }
+  .pride-values > span:last-child,
+  .pride-values > svg:nth-last-child(2) {
+    display: block;
+  }
+  .pride-art-caption > span:last-child {
+    font-size: 12px;
+    letter-spacing: 0.4px;
+  }
+  .about-sign .text-link {
+    font-size: 14px;
+  }
+  .approach-notebook {
+    padding: 24px;
+  }
+  .approach-question-label {
+    font-size: 12px;
+  }
+  .approach-panel li {
+    font-size: 15px;
+  }
+  .contact-dialog-content {
+    padding: 28px 23px;
+  }
+  .footer-top > a:last-child,
+  .footer-bottom {
+    font-size: 14px;
+  }
+  .footer-large {
+    font-size: 10.9vw;
+  }
+  .closing-copy > .eyebrow,
+  .faq-intro .eyebrow,
+  .career-heading .eyebrow {
+    font-size: 12px;
+  }
+}
+@media (max-width: 359px) {
+  .brand-mark {
+    display: none;
+  }
+  .brand-name > span {
+    max-width: 140px;
+  }
+  .space-card strong {
+    font-size: 16px;
+  }
+  .space-icon {
+    width: 35px;
+    height: 35px;
+  }
+  .hero-bottom a:last-child {
+    font-size: 13px;
+  }
+  .about-copy h2 {
+    font-size: 44px;
   }
 }

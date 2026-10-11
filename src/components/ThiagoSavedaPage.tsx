@@ -101,19 +101,20 @@ const questions = [
 function PrideFlag({ className = "" }: { className?: string }) {
   const titleId = useId();
   return (
-    <svg className={className} viewBox="0 0 300 180" role="img" aria-labelledby={titleId}>
-      <title id={titleId}>Bandeira do orgulho LGBTQIA+ Progress Pride</title>
-      <path fill="#e84d54" d="M0 0h300v30H0z" />
-      <path fill="#f29a48" d="M0 30h300v30H0z" />
-      <path fill="#f6d568" d="M0 60h300v30H0z" />
-      <path fill="#59a77a" d="M0 90h300v30H0z" />
-      <path fill="#568cca" d="M0 120h300v30H0z" />
-      <path fill="#8b62b0" d="M0 150h300v30H0z" />
-      <path fill="#262629" d="M0 0h25l100 90-100 90H0z" />
-      <path fill="#945d42" d="M0 0h5l100 90L5 180H0z" />
-      <path fill="#80c5db" d="M0 14l84 76L0 166z" />
-      <path fill="#eab8c7" d="M0 33l63 57L0 147z" />
-      <path fill="#fff7ef" d="M0 52l42 38L0 128z" />
+    <svg
+      className={`pride-flag ${className}`.trim()}
+      viewBox="0 0 300 180"
+      role="img"
+      aria-labelledby={titleId}
+      shapeRendering="crispEdges"
+    >
+      <title id={titleId}>Bandeira do orgulho LGBTQIA+ de seis cores</title>
+      <rect fill="#e40303" width="300" height="30" />
+      <rect fill="#ff8c00" y="30" width="300" height="30" />
+      <rect fill="#ffed00" y="60" width="300" height="30" />
+      <rect fill="#008026" y="90" width="300" height="30" />
+      <rect fill="#004dff" y="120" width="300" height="30" />
+      <rect fill="#750787" y="150" width="300" height="30" />
     </svg>
   );
 }
@@ -550,9 +551,9 @@ export function ThiagoSavedaPage() {
               <div className="collage-stamp">
                 <PrideFlag />
                 <span>
-                  EXISTIR
+                  EXISTIR COM
                   <br />
-                  COM ORGULHO.
+                  ORGULHO.
                 </span>
               </div>
               <span className="collage-note">Prazer, de verdade.</span>

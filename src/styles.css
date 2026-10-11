@@ -49,6 +49,10 @@ img {
 svg {
   flex-shrink: 0;
 }
+.pride-flag {
+  display: block;
+  aspect-ratio: 5 / 3;
+}
 h1,
 h2,
 h3,
@@ -81,7 +85,7 @@ h4 {
   margin-inline: auto;
 }
 .section-space {
-  padding-block: 110px;
+  padding-block: 96px;
 }
 .dark-section {
   color: var(--paper);
@@ -305,8 +309,8 @@ h4 {
   margin-bottom: 20px;
 }
 .pride-pill > svg {
-  width: 24px;
-  height: 15px;
+  width: 30px;
+  height: 18px;
   border-radius: 2px;
 }
 .hero-eyebrow {
@@ -486,12 +490,11 @@ h4 {
   padding: 13px;
   background: #fffaf5;
   box-shadow: 0 10px 30px #30212f15;
-  transform: rotate(-9deg);
   border-radius: 5px;
 }
 .hero-pride-card > svg {
-  width: 78px;
-  height: 47px;
+  width: 80px;
+  height: 48px;
 }
 .hero-pride-card > span {
   display: block;
@@ -563,8 +566,8 @@ h4 {
   transform: translateY(3px);
 }
 .hero-bottom a > svg[viewBox="0 0 300 180"] {
-  width: 27px;
-  height: 17px;
+  width: 30px;
+  height: 18px;
 }
 .status-dot {
   width: 6px;
@@ -695,9 +698,8 @@ h2 em {
   margin-top: 36px;
 }
 .manifesto-bottom > svg {
-  width: 52px;
-  height: 32px;
-  transform: rotate(-6deg);
+  width: 50px;
+  height: 30px;
 }
 .manifesto-bottom > p {
   font-size: 14px;
@@ -729,7 +731,7 @@ h2 em {
   border-bottom: 1px solid var(--line);
   font-size: 12px;
   letter-spacing: 1.5px;
-  margin-bottom: 48px;
+  margin-bottom: 40px;
 }
 .section-label > span:last-child {
   color: var(--muted);
@@ -744,7 +746,7 @@ h2 em {
 .about-collage {
   position: relative;
   padding-right: 85px;
-  padding-bottom: 75px;
+  padding-bottom: 24px;
 }
 .about-main-photo {
   height: 510px;
@@ -791,34 +793,35 @@ h2 em {
   position: absolute;
   right: 28px;
   top: 45px;
-  width: 88px;
-  height: 88px;
-  padding: 15px;
+  width: 124px;
+  height: 124px;
+  padding: 14px;
   border-radius: 50%;
   background: var(--lavender);
-  transform: rotate(11deg);
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
   text-align: center;
 }
 .collage-stamp > svg {
-  width: 33px;
-  height: 20px;
+  width: 40px;
+  height: 24px;
 }
 .collage-stamp > span {
   font-size: 12px;
-  line-height: 1.5;
-  letter-spacing: 1px;
-  margin-top: 5px;
+  line-height: 1.4;
+  letter-spacing: 0.4px;
 }
 .collage-note {
-  position: absolute;
-  left: 30px;
-  bottom: 25px;
+  display: block;
+  max-width: calc(100% - 145px);
+  margin-top: 18px;
   font-family: var(--serif);
   font-size: 34px;
   font-style: italic;
-  transform: rotate(-7deg);
+  line-height: 1.15;
   color: #987188;
 }
 .about-copy > .eyebrow {
@@ -969,9 +972,8 @@ h2 em {
 .large-pride-flag {
   width: 91%;
   height: auto;
-  transform: rotate(-9deg);
   position: relative;
-  filter: drop-shadow(0 20px 20px #0003);
+  box-shadow: 0 20px 30px #0003;
   border-radius: 5px;
 }
 .pride-star {
@@ -1674,9 +1676,8 @@ h2 em {
   color: #edbcd3;
 }
 .first-step-heading > svg {
-  width: 88px;
-  height: 53px;
-  transform: rotate(8deg);
+  width: 80px;
+  height: 48px;
 }
 .steps-grid {
   display: grid;
@@ -1818,35 +1819,35 @@ h2 em {
 }
 .closing-photo {
   position: relative;
-  padding-bottom: 18px;
+  display: flex;
+  flex-direction: column;
 }
 .closing-photo > img {
   width: 100%;
   height: 470px;
   object-fit: cover;
-  border-radius: 210px 210px 8px 8px;
+  border-radius: 210px 210px 0 0;
 }
 .closing-photo-note {
-  position: absolute;
-  bottom: 0;
-  left: -20px;
-  right: 20px;
   padding: 16px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #f9f5eef5;
-  transform: rotate(-5deg);
-  box-shadow: 0 10px 25px #382b3517;
+  gap: 16px;
+  background: var(--paper);
+  border-radius: 0 0 8px 8px;
+  border: 1px solid #382b3517;
+  border-top: 0;
 }
 .closing-photo-note > span {
   font-family: var(--serif);
   font-style: italic;
   font-size: 36px;
+  line-height: 1.15;
 }
 .closing-photo-note > svg {
-  width: 44px;
-  height: 26px;
+  width: 50px;
+  height: 30px;
 }
 .closing-photo > svg {
   position: absolute;
@@ -1920,8 +1921,8 @@ h2 em {
   gap: 10px;
 }
 .footer-bottom > span > svg {
-  width: 25px;
-  height: 15px;
+  width: 30px;
+  height: 18px;
 }
 .footer-bottom > a {
   width: 36px;
@@ -1992,10 +1993,9 @@ h2 em {
   padding: 40px;
 }
 .contact-dialog-content > svg {
-  width: 42px;
-  height: 25px;
+  width: 40px;
+  height: 24px;
   margin-bottom: 25px;
-  transform: rotate(-7deg);
 }
 .contact-dialog-content > .eyebrow {
   font-size: 12px;
@@ -2215,9 +2215,6 @@ h2 em {
 .motion-ready .hero-sticker > svg {
   animation: spin 30s linear infinite;
 }
-.motion-ready .pride-art.revealed .large-pride-flag {
-  animation: flag-sway 9s ease-in-out infinite;
-}
 .motion-ready .site-dialog[open] {
   animation: dialog-arrive 0.3s ease both;
 }
@@ -2248,11 +2245,11 @@ h2 em {
 @keyframes card-arrive {
   from {
     opacity: 0;
-    transform: rotate(-17deg) translateY(30px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
-    transform: rotate(-9deg) translateY(0);
+    transform: translateY(0);
   }
 }
 @keyframes ribbon {
@@ -2263,15 +2260,6 @@ h2 em {
 @keyframes spin {
   to {
     transform: rotate(360deg);
-  }
-}
-@keyframes flag-sway {
-  0%,
-  100% {
-    transform: rotate(-9deg) translateY(0);
-  }
-  50% {
-    transform: rotate(-5deg) translateY(-8px);
   }
 }
 @keyframes dialog-arrive {
@@ -2449,8 +2437,8 @@ h2 em {
     top: 115px;
   }
   .hero-pride-card > svg {
-    width: 55px;
-    height: 33px;
+    width: 60px;
+    height: 36px;
   }
   .hero-pride-card > span {
     font-size: 18px;
@@ -2490,11 +2478,11 @@ h2 em {
     width: 22px;
   }
   .section-space {
-    padding-block: 85px;
+    padding-block: 80px;
   }
   .section-label {
     font-size: 12px;
-    margin-bottom: 38px;
+    margin-bottom: 32px;
   }
   .manifesto h2 {
     font-size: 67px;
@@ -2515,7 +2503,6 @@ h2 em {
   }
   .about-collage {
     padding-right: 25px;
-    padding-bottom: 130px;
   }
   .about-small-photo {
     width: 155px;
@@ -2524,15 +2511,16 @@ h2 em {
     height: 145px;
   }
   .collage-note {
-    bottom: 75px;
-    font-size: 25px;
-    left: 7px;
+    max-width: calc(100% - 155px);
+    font-size: 24px;
   }
   .collage-stamp {
-    right: -10px;
-    width: 70px;
-    height: 70px;
+    right: 0;
+    top: 0;
+    height: 92px;
     padding: 10px;
+    gap: 6px;
+    border-radius: 16px;
   }
   .about-copy h2 {
     font-size: 46px;
@@ -2853,8 +2841,8 @@ h2 em {
     letter-spacing: 0.4px;
   }
   .hero-bottom a > svg[viewBox="0 0 300 180"] {
-    width: 22px;
-    height: 14px;
+    width: 30px;
+    height: 18px;
   }
   .credential-bar > .container {
     padding-block: 20px;
@@ -2892,7 +2880,7 @@ h2 em {
     height: 12px;
   }
   .section-space {
-    padding-block: 65px;
+    padding-block: 60px;
   }
   .manifesto-meta {
     margin-bottom: 27px;
@@ -2919,8 +2907,8 @@ h2 em {
     margin-top: 25px;
   }
   .manifesto-bottom > svg {
-    width: 35px;
-    height: 21px;
+    width: 40px;
+    height: 24px;
   }
   .manifesto-bottom p {
     font-size: 12px;
@@ -2931,7 +2919,7 @@ h2 em {
   }
   .section-label {
     padding-bottom: 16px;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
     font-size: 12px;
     letter-spacing: 1px;
   }
@@ -2949,7 +2937,6 @@ h2 em {
   }
   .about-collage {
     padding-right: 52px;
-    padding-bottom: 65px;
     margin-left: 10px;
   }
   .about-main-photo {
@@ -2972,13 +2959,11 @@ h2 em {
     font-size: 12px;
   }
   .collage-note {
-    left: 14px;
-    bottom: 22px;
-    font-size: 27px;
+    max-width: calc(100% - 120px);
+    font-size: 26px;
   }
   .collage-stamp {
-    right: 17px;
-    top: 30px;
+    right: 4px;
   }
   .about-copy > .eyebrow {
     font-size: 12px;
@@ -3304,8 +3289,8 @@ h2 em {
     font-size: 48px;
   }
   .first-step-heading > svg {
-    width: 36px;
-    height: 22px;
+    width: 40px;
+    height: 24px;
     margin-top: 8px;
   }
   .steps-grid {
@@ -3387,23 +3372,18 @@ h2 em {
     font-size: 12px;
     min-height: 53px;
   }
-  .closing-photo {
-    margin-inline: 17px;
-  }
   .closing-photo > img {
     height: 380px;
   }
   .closing-photo-note {
-    left: -10px;
-    right: 10px;
     padding: 13px 18px;
   }
   .closing-photo-note > span {
     font-size: 30px;
   }
   .closing-photo-note > svg {
-    width: 34px;
-    height: 21px;
+    width: 40px;
+    height: 24px;
   }
   .closing-photo > svg {
     width: 47px;
@@ -3534,6 +3514,7 @@ h2 em {
   }
   .collage-note {
     font-size: 22px;
+    max-width: calc(100% - 100px);
   }
   .pride-copy h2 {
     font-size: 55px;
@@ -4156,13 +4137,9 @@ body {
     width: calc(100% - 10px);
     margin-inline: auto;
     padding-right: 60px;
-    padding-bottom: 75px;
   }
   .about-main-photo {
     height: 430px;
-  }
-  .collage-note {
-    bottom: 30px;
   }
   .about-details {
     grid-template-columns: minmax(0, 1fr);
@@ -4408,14 +4385,6 @@ body {
   }
   .photo-caption > span {
     text-align: right;
-  }
-  .collage-stamp {
-    width: 99px;
-    height: 99px;
-  }
-  .collage-stamp > span {
-    font-size: 12px;
-    letter-spacing: 0;
   }
   .vertical-caption {
     display: none;

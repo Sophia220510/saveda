@@ -1,6 +1,6 @@
 # Thiago Saveda — Sua história. Todas as suas cores.
 
-Reformulação editorial em creme, vinho e lavanda, com retrato principal diante dos livros, cinco fotografias diferentes, colagens, manifesto, bandeira Progress Pride, biografia, espaços de escuta, percursos com abas, formação, experiência docente, pesquisa, reflexões e contato.
+Reformulação editorial em creme, vinho e lavanda, com retrato principal diante dos livros, cinco fotografias diferentes, colagens, manifesto, bandeira clássica do orgulho LGBTQIA+ de seis cores em SVG, biografia, espaços de escuta, percursos com abas, formação, experiência docente, pesquisa, reflexões e contato.
 
 ## Como editar os dados
 
@@ -49,7 +49,8 @@ O perfil pessoal `@saveda` abriu uma tela de login. Os novos retratos vieram do 
 - Percursos de Psicanálise e Psicopedagogia com abas acessíveis por teclado.
 - Triagem por Instagram com mensagem copiável e alternativa quando a área de transferência não está disponível.
 - Janelas nativas com foco contido, fechamento por Escape e retorno ao botão de origem.
-- Entrada com sequência de títulos, retrato e elementos de colagem; revelações com intervalos entre cartões; paralaxe suave na imagem principal; faixa tipográfica em movimento; bandeira com oscilação sutil; microinterações e barra de progresso da leitura. A renderização inicial permanece visível antes do JavaScript.
+- Bandeiras vetoriais de seis faixas, com cores vivas, proporção consistente e bordas nítidas. Selo circular no computador e cartão compacto no celular e no tablet, com espaço para o texto. Frase manuscrita separada da foto menor e legenda final alinhada à largura da fotografia.
+- Entrada com sequência de títulos, retrato e elementos de colagem; revelações com intervalos entre cartões; paralaxe suave na imagem principal; faixa tipográfica em movimento; microinterações e barra de progresso da leitura. A renderização inicial permanece visível antes do JavaScript.
 - Animações respeitam a preferência por movimento reduzido, inclusive quando alterada durante a visita; o conteúdo permanece legível sem JavaScript.
 - Fontes locais Manrope e Instrument Serif, com licenças na pasta `public/fonts`.
 

@@ -1,6 +1,6 @@
 # Thiago Saveda — Sua história. Todas as suas cores.
 
-Site profissional de Thiago Saveda, psicopedagogo e psicanalista. Composição editorial em creme, vinho, lavanda e dourado, com cinco retratos reais diferentes e bandeira Progress Pride. Inclui apresentação, espaços de escuta, percursos interativos, formação, trajetória docente, pesquisa, reflexões e triagem por Instagram.
+Site profissional de Thiago Saveda, psicopedagogo e psicanalista. Composição editorial em creme, vinho, lavanda e dourado, com cinco retratos reais diferentes e bandeira clássica do orgulho LGBTQIA+ de seis cores em SVG. Inclui apresentação, espaços de escuta, percursos interativos, formação, trajetória docente, pesquisa, reflexões e triagem por Instagram.
 
 ## Executar
 

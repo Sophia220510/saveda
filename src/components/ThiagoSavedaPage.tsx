@@ -98,6 +98,30 @@ const questions = [
   },
 ];
 
+function WhatsAppIcon({ size = 20 }: { size?: number }) {
+  return (
+    <svg
+      className="whatsapp-icon"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path
+        d="M12 2a10 10 0 0 0-8.66 15L2 22l5.13-1.35A10 10 0 1 0 12 2Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M8.1 7.2c-.2-.5-.4-.5-.6-.5H7c-.2 0-.5.1-.7.3-.3.3-.9.9-.9 2.1s.9 2.4 1.1 2.5c.1.2 1.9 2.9 4.5 4 .6.3 1.1.5 1.5.6.6.2 1.1.2 1.5.1.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.3l-1.8-.9c-.3-.1-.5-.2-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.2-1.4-.8-.7-1.3-1.5-1.5-1.8-.1-.3 0-.4.1-.5l.5-.6c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.1Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 function PrideFlag({ className = "" }: { className?: string }) {
   const titleId = useId();
   return (
@@ -306,11 +330,11 @@ export function ThiagoSavedaPage() {
               </a>
             ))}
             <button className="button nav-mobile-contact" onClick={openContact}>
-              Vamos conversar <ArrowUpRight size={18} />
+              Vamos conversar <WhatsAppIcon />
             </button>
           </nav>
           <button className="button button-small header-contact" onClick={openContact}>
-            Vamos conversar <ArrowUpRight size={17} />
+            Vamos conversar <WhatsAppIcon />
           </button>
           <button
             className="menu-button"
@@ -1174,7 +1198,7 @@ export function ThiagoSavedaPage() {
         onClick={openContact}
         aria-label="Conversar com Thiago sobre a triagem gratuita"
       >
-        <MessageCircle size={21} />
+        <WhatsAppIcon size={22} />
         <span>Vamos conversar</span>
         <ArrowUpRight size={18} />
       </button>
